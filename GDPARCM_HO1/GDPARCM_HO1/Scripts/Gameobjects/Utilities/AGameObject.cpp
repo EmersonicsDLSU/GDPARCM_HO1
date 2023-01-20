@@ -1,5 +1,5 @@
 #include "AGameObject.h"
-#include "Components/Renderer.h"
+#include "Components/Renderer/Renderer.h"
 
 
 AGameObject::AGameObject(String name)

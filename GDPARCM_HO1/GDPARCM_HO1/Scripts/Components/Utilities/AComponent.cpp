@@ -33,7 +33,7 @@ void AComponent::SetDeltaTime(sf::Time deltaTime)
 
 void AComponent::Perform()
 {
-	std::cout << "Component's Name: " << GetName() << std::endl;
+	//std::cout << "Component's Name: " << GetName() << std::endl;
 }
 
 void AComponent::AttachOwner(AGameObject* object) {

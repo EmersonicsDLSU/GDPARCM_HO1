@@ -2,7 +2,7 @@
 
 int main()
 {
-    BaseWindow base_window;
-    base_window.Run();
+    BaseWindow* base_window = BaseWindow::GetInstance();
+    base_window->Run();
     return 0;
 }

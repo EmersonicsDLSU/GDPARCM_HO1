@@ -22,8 +22,8 @@ void BGMovement::Perform()
 
 	sf::Vector2f localPos = GetOwner()->GetTransformable()->getPosition();
 	if (localPos.y * deltaTime.asSeconds() > 0) {
-		//reset position
-		bgTransform->setPosition(0, -BaseWindow::WINDOW_HEIGHT * 7);
+		// reset position
+		bgTransform->setPosition(0, -BaseWindow::WINDOW_HEIGHT * 7.0f);
 	}
 }
 

@@ -110,7 +110,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>
@@ -130,7 +130,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
@@ -147,28 +147,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scripts\Utilities\FPSCounter.cpp" />
+    <ClCompile Include="Scripts\Utilities\FontManager.cpp" />
     <ClCompile Include="Scripts\Gameobjects\Utilities\GameObjectManager.cpp" />
     <ClCompile Include="Scripts\Gameobjects\BackgroundObject\BGMovement.cpp" />
     <ClCompile Include="Scripts\Gameobjects\BackgroundObject\BGObject.cpp" />
-    <ClCompile Include="Scripts\Components\Renderer.cpp" />
+    <ClCompile Include="Scripts\Components\Renderer\Renderer.cpp" />
     <ClCompile Include="Scripts\Components\Utilities\AComponent.cpp" />
     <ClCompile Include="Scripts\Gameobjects\Utilities\AGameObject.cpp" />
     <ClCompile Include="Scripts\BaseWindow\BaseWindow.cpp" />
     <ClCompile Include="Scripts\main.cpp" />
-    <ClCompile Include="Scripts\Utilities\SpriteRenderer.cpp" />
+    <ClCompile Include="Scripts\Components\Renderer\SpriteRenderer.cpp" />
     <ClCompile Include="Scripts\Utilities\TextureManager.cpp" />
+    <ClCompile Include="Scripts\Components\Renderer\TextRenderer.cpp" />
+    <ClCompile Include="Scripts\Gameobjects\UI\UIText.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\Utilities\FPSCounter.h" />
+    <ClInclude Include="Scripts\Utilities\FontManager.h" />
     <ClInclude Include="Scripts\Gameobjects\Utilities\GameObjectManager.h" />
     <ClInclude Include="Scripts\Gameobjects\BackgroundObject\BGMovement.h" />
     <ClInclude Include="Scripts\Gameobjects\BackgroundObject\BGObject.h" />
-    <ClInclude Include="Scripts\Components\Renderer.h" />
+    <ClInclude Include="Scripts\Components\Renderer\Renderer.h" />
     <ClInclude Include="Scripts\Components\Utilities\AComponent.h" />
     <ClInclude Include="Scripts\Gameobjects\Utilities\AGameObject.h" />
     <ClInclude Include="Scripts\BaseWindow\BaseWindow.h" />
-    <ClInclude Include="Scripts\Utilities\SpriteRenderer.h" />
+    <ClInclude Include="Scripts\Components\Renderer\SpriteRenderer.h" />
     <ClInclude Include="Scripts\Utilities\TextureManager.h" />
     <ClInclude Include="Scripts\Utilities\Typedefs.h" />
+    <ClInclude Include="Scripts\Components\Renderer\TextRenderer.h" />
+    <ClInclude Include="Scripts\Gameobjects\UI\UIText.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,6 +5,7 @@
 class BaseWindow
 {
 public:
+    static BaseWindow* GetInstance();
     BaseWindow();
     void Run();
 private:
@@ -16,9 +17,8 @@ public:
     static const int WINDOW_HEIGHT = 1080;
     static const int FPS_LIMIT = 60.0f;
     const sf::Time deltaTime = sf::seconds(1.f / 60.f);
-public:
-    float fps;
 private:
+    static BaseWindow* sharedInstance;
     sf::RenderWindow mWindow;
 };
 

@@ -11,5 +11,5 @@ public:
 	float GetBGSpeed();
 
 private:
-	float SPEED_MULTIPLIER = 1000.0f;
+	float SPEED_MULTIPLIER = 100.0f;
 };
