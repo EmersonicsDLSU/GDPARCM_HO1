@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scripts\Gameobjects\IconObject\IconSpawner.cpp" />
+    <ClCompile Include="Scripts\Gameobjects\IconObject\IconObject.cpp" />
     <ClCompile Include="Scripts\Utilities\FPSCounter.cpp" />
     <ClCompile Include="Scripts\Utilities\FontManager.cpp" />
     <ClCompile Include="Scripts\Gameobjects\Utilities\GameObjectManager.cpp" />
@@ -163,6 +165,8 @@
     <ClCompile Include="Scripts\Gameobjects\UI\UIText.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\Gameobjects\IconObject\IconSpawner.h" />
+    <ClInclude Include="Scripts\Gameobjects\IconObject\IconObject.h" />
     <ClInclude Include="Scripts\Utilities\FPSCounter.h" />
     <ClInclude Include="Scripts\Utilities\FontManager.h" />
     <ClInclude Include="Scripts\Gameobjects\Utilities\GameObjectManager.h" />

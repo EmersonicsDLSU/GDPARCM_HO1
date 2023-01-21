@@ -2,6 +2,10 @@
 #include <iostream>
 #include "TextureManager.h"
 
+#include <format>
+
+#include "Typedefs.h"
+
 TextureManager* TextureManager::sharedInstance = nullptr;
 
 TextureManager* TextureManager::GetInstance() {
@@ -18,11 +22,14 @@ void TextureManager::LoadAll() {
 	sf::Texture* bgTex1;
 	bgTex1 = GetTexture("desert_bg");
 	bgTex1->setRepeated(true);
+	// load the Dota2 icons
+	for (int i = 0; i <= 479; ++i)
+	{
+		String iconName = std::format("tile{:03}", i);
+		LoadTexture(iconName, 
+			std::format("../Media/Streaming/{}.png", iconName));
+	}
 
-	//LoadTexture("ui_bg", "Media/Textures/newtxtbx.png");
-	//LoadTexture("btn_normal", "Media/Textures/newbt.png");
-	//LoadTexture("btn_pressed", "Media/Textures/newbtpress.png");
-	//LoadTexture("hud_bg", "Media/Textures/clear.png");
 }
 
 void TextureManager::LoadTexture(std::string key, std::string path) {

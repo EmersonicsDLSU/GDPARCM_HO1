@@ -88,3 +88,9 @@ void GameObjectManager::DeleteAllObjectsInScene()
 	gameObjectList.shrink_to_fit();
 	gameObjectMap.clear();
 }
+
+GameObjectManager::~GameObjectManager()
+{
+	DeleteAllObjectsInScene();
+	std::cout << "GameObjectManager class deleted\n";
+}

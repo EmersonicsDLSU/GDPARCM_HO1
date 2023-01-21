@@ -57,6 +57,12 @@
     <ClCompile Include="Scripts\Utilities\FPSCounter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Gameobjects\IconObject\IconObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Gameobjects\IconObject\IconSpawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\BaseWindow\BaseWindow.h">
@@ -99,6 +105,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Utilities\FPSCounter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Gameobjects\IconObject\IconObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Gameobjects\IconObject\IconSpawner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

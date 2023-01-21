@@ -22,8 +22,8 @@ void UIText::Initialize()
 	text->setFont(*font);
 	text->setFillColor(sf::Color::White);
 	text->setOutlineColor(sf::Color::Black);
-	text->setOutlineThickness(4.0f);
-	SetSize(40);
+	text->setOutlineThickness(2.5f);
+	SetSize(35);
 	SetText("<Using placeholder!>");
 
 	Renderer* renderer = new Renderer("Text");

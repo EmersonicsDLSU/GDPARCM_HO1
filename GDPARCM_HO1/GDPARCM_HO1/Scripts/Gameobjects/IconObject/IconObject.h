@@ -1,11 +1,12 @@
 #pragma once
 #include "Gameobjects/Utilities/AGameObject.h"
 
-class BGObject : public AGameObject
+class IconObject : public AGameObject
 {
 public:
-	BGObject(String name, String bgName);
+	IconObject(String name, String iconName);
 	void Initialize() override;
 private:
-	String bgName;
+	std::string iconName;
 };
+

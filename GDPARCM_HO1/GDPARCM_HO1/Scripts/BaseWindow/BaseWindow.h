@@ -7,6 +7,7 @@ class BaseWindow
 public:
     static BaseWindow* GetInstance();
     BaseWindow();
+    ~BaseWindow();
     void Run();
 private:
     void ProcessEvents();

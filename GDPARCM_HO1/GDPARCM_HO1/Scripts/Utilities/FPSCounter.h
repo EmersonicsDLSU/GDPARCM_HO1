@@ -1,15 +1,15 @@
 #pragma once
+#include "Gameobjects/Utilities/AGameObject.h"
 class UIText;
 
-class FPSCounter
+class FPSCounter : public AGameObject
 {
 public:
-	static FPSCounter* GetInstance();
-	FPSCounter();
-	void UpdateFPS(float fps);
+	FPSCounter(String name, String none = "\0");
+	void Initialize() override;
+	void Update(sf::Time deltaTime) override;
 	float GetFPS();
 private:
-	static FPSCounter* sharedInstance;
 	UIText* button_1Text;
 	float fps = 0;
 };

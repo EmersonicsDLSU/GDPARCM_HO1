@@ -9,6 +9,7 @@ AGameObject::AGameObject(String name)
 
 AGameObject::~AGameObject()
 {
+	std::cout << "Object Name: " << GetName() << " deleted\n";
 }
 
 void AGameObject::Initialize()

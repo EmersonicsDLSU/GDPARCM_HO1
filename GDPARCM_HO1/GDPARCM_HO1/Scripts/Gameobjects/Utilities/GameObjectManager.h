@@ -7,6 +7,8 @@
 class GameObjectManager : sf::NonCopyable
 {
 public:
+    ~GameObjectManager();
+
     static GameObjectManager* GetInstance();
     AGameObject* FindObjectByName(std::string name);
     std::vector<AGameObject*> GetAllObjects();

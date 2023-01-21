@@ -1,5 +1,6 @@
 #include "BaseWindow.h"
 #include "Gameobjects/BackgroundObject/BGObject.h"
+#include "Gameobjects/IconObject/IconSpawner.h"
 #include "Gameobjects/UI/UIText.h"
 #include "Gameobjects/Utilities/GameObjectManager.h"
 #include "Utilities/FontManager.h"
@@ -21,13 +22,24 @@ BaseWindow::BaseWindow() : mWindow(sf::VideoMode(BaseWindow::WINDOW_WIDTH, BaseW
     mWindow.setFramerateLimit(60);
     TextureManager::GetInstance()->LoadAll();
     FontManager::GetInstance()->LoadAll();
+
     // creates objects here
     // bgobject
-    BGObject* bgObject = new BGObject("BGObject", "desert_bg");
-    GameObjectManager::GetInstance()->AddObject(bgObject);
+    BGObject* bg_object = new BGObject("BGObject", "desert_bg");
+    GameObjectManager::GetInstance()->AddObject(bg_object);
+    FPSCounter* fps_Counter = new FPSCounter("FPSCounter");
+    GameObjectManager::GetInstance()->AddObject(fps_Counter);
+    IconSpawner* icon_spawner = new IconSpawner("IconSpawner");
+    GameObjectManager::GetInstance()->AddObject(icon_spawner);
 
 
 
+}
+
+BaseWindow::~BaseWindow()
+{
+    delete GameObjectManager::GetInstance();
+    std::cout << "BaseWindow class deleted\n";
 }
 
 void BaseWindow::Run()
@@ -41,7 +53,6 @@ void BaseWindow::Run()
         while (timeSinceLastUpdate > deltaTime) {
             timeSinceLastUpdate -= deltaTime;
             ProcessEvents();
-            FPSCounter::GetInstance()->UpdateFPS(floor(1.0f / deltaTime.asSeconds()));
             Update(deltaTime);
         }
         Render();

@@ -1,12 +1,11 @@
 #include "BGObject.h"
 #include <string>
-#include <iostream>
 #include "BGMovement.h"
 #include "BaseWindow/BaseWindow.h"
 #include "Components/Renderer/Renderer.h"
 #include "Utilities/TextureManager.h"
 
-BGObject::BGObject(std::string name, std::string bgName) : ::AGameObject(name), bgName(bgName) {}
+BGObject::BGObject(String name, String bgName) : ::AGameObject(name), bgName(bgName) {}
 
 void BGObject::Initialize()
 {
@@ -26,4 +25,5 @@ void BGObject::Initialize()
 	Renderer* renderer = new Renderer("BG");
 	renderer->AssignDrawable(sprite);
 	AttachComponent(renderer);
+
 }
