@@ -33,7 +33,7 @@
     <ClCompile Include="Scripts\Components\Renderer\SpriteRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Utilities\TextureManager.cpp">
+    <ClCompile Include="Scripts\Utilities\Manager\TextureManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Gameobjects\BackgroundObject\BGObject.cpp">
@@ -45,7 +45,7 @@
     <ClCompile Include="Scripts\Gameobjects\Utilities\GameObjectManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Utilities\FontManager.cpp">
+    <ClCompile Include="Scripts\Utilities\Manager\FontManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Components\Renderer\TextRenderer.cpp">
@@ -54,13 +54,22 @@
     <ClCompile Include="Scripts\Gameobjects\UI\UIText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Utilities\FPSCounter.cpp">
+    <ClCompile Include="Scripts\Utilities\Statistics\FPSCounter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Gameobjects\IconObject\IconObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Gameobjects\IconObject\IconSpawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Utilities\Threads\AppThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Utilities\MathUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Utilities\StringUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,7 +89,7 @@
     <ClInclude Include="Scripts\Components\Renderer\SpriteRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Utilities\TextureManager.h">
+    <ClInclude Include="Scripts\Utilities\Manager\TextureManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Gameobjects\BackgroundObject\BGObject.h">
@@ -95,7 +104,7 @@
     <ClInclude Include="Scripts\Gameobjects\Utilities\GameObjectManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Utilities\FontManager.h">
+    <ClInclude Include="Scripts\Utilities\Manager\FontManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Components\Renderer\TextRenderer.h">
@@ -104,13 +113,22 @@
     <ClInclude Include="Scripts\Gameobjects\UI\UIText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Utilities\FPSCounter.h">
+    <ClInclude Include="Scripts\Utilities\Statistics\FPSCounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Gameobjects\IconObject\IconObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Gameobjects\IconObject\IconSpawner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Utilities\Threads\AppThread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Utilities\MathUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Utilities\StringUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

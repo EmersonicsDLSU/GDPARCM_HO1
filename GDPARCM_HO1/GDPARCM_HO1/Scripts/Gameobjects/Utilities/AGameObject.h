@@ -41,6 +41,8 @@ protected:
 	String name;
 	sf::Transformable _transformable;
 	std::vector<AComponent*> componentList;
+	sf::Sprite* sprite;
+	sf::Texture* texture;
 private:
 	bool enabled = true;
 };

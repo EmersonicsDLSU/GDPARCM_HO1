@@ -1,13 +1,13 @@
 #include "BaseWindow.h"
 #include "Gameobjects/BackgroundObject/BGObject.h"
 #include "Gameobjects/IconObject/IconSpawner.h"
-#include "Gameobjects/UI/UIText.h"
 #include "Gameobjects/Utilities/GameObjectManager.h"
-#include "Utilities/FontManager.h"
-#include "Utilities/FPSCounter.h"
-#include "Utilities/TextureManager.h"
+#include "Utilities/Manager/FontManager.h"
+#include "Utilities/Manager/TextureManager.h"
+#include "Utilities/Statistics/FPSCounter.h"
 
 BaseWindow* BaseWindow::sharedInstance = nullptr;
+const sf::Time BaseWindow::TIME_PER_FRAME = sf::seconds(1.f / 60.f);
 
 BaseWindow* BaseWindow::GetInstance() {
     //initialize only when we need it
@@ -19,7 +19,7 @@ BaseWindow* BaseWindow::GetInstance() {
 
 BaseWindow::BaseWindow() : mWindow(sf::VideoMode(BaseWindow::WINDOW_WIDTH, BaseWindow::WINDOW_HEIGHT), "Dota2 Skills")
 {
-    mWindow.setFramerateLimit(60);
+    mWindow.setFramerateLimit(FPS_LIMIT);
     TextureManager::GetInstance()->LoadAll();
     FontManager::GetInstance()->LoadAll();
 
@@ -31,8 +31,6 @@ BaseWindow::BaseWindow() : mWindow(sf::VideoMode(BaseWindow::WINDOW_WIDTH, BaseW
     GameObjectManager::GetInstance()->AddObject(fps_Counter);
     IconSpawner* icon_spawner = new IconSpawner("IconSpawner");
     GameObjectManager::GetInstance()->AddObject(icon_spawner);
-
-
 
 }
 
@@ -49,14 +47,22 @@ void BaseWindow::Run()
     while (mWindow.isOpen()) {
 
         ProcessEvents();
-        timeSinceLastUpdate += clock.restart();
-        while (timeSinceLastUpdate > deltaTime) {
-            timeSinceLastUpdate -= deltaTime;
+        sf::Time elapsedTime = clock.restart();
+        timeSinceLastUpdate += elapsedTime;
+        while (timeSinceLastUpdate > TIME_PER_FRAME) {
+            timeSinceLastUpdate -= TIME_PER_FRAME;
             ProcessEvents();
-            Update(deltaTime);
+            Update(elapsedTime);
         }
         Render();
+
+        // 1 second delay
+        sleep(100);
     }
+}
+
+void BaseWindow::run()
+{
 }
 
 void BaseWindow::ProcessEvents()
@@ -74,7 +80,7 @@ void BaseWindow::ProcessEvents()
     }
 }
 
-void BaseWindow::Update(sf::Time)
+void BaseWindow::Update(sf::Time deltaTime)
 {
     GameObjectManager::GetInstance()->Update(deltaTime);
 }

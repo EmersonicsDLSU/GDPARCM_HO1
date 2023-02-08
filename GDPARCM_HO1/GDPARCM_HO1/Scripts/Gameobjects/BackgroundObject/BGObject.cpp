@@ -3,7 +3,7 @@
 #include "BGMovement.h"
 #include "BaseWindow/BaseWindow.h"
 #include "Components/Renderer/Renderer.h"
-#include "Utilities/TextureManager.h"
+#include "Utilities/Manager/TextureManager.h"
 
 BGObject::BGObject(String name, String bgName) : ::AGameObject(name), bgName(bgName) {}
 

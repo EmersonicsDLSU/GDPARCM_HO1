@@ -9,6 +9,10 @@ AGameObject::AGameObject(String name)
 
 AGameObject::~AGameObject()
 {
+	if (sprite != nullptr)
+		delete sprite;
+	if (texture != nullptr)
+		delete texture;
 	std::cout << "Object Name: " << GetName() << " deleted\n";
 }
 
@@ -62,7 +66,7 @@ void AGameObject::SetScale(float x, float y)
 
 sf::FloatRect AGameObject::GetLocalBounds()
 {
-	throw "GetLocalBounds() not yet implemented!";
+	return this->sprite->getLocalBounds();
 }
 
 sf::Vector2f AGameObject::GetPosition()

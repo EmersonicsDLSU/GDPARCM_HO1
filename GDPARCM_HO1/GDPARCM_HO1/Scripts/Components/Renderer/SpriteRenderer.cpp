@@ -1,7 +1,7 @@
 #include "SpriteRenderer.h"
 
 #include <SFML/Graphics/Sprite.hpp>
-#include "Utilities/TextureManager.h"
+#include "Utilities/Manager/TextureManager.h"
 
 SpriteRenderer::SpriteRenderer(string name, string textureName) : ::Renderer(name) {
 	sf::Sprite* sprite = new sf::Sprite();

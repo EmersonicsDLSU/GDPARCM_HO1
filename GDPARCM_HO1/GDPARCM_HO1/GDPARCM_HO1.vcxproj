@@ -147,10 +147,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scripts\Utilities\Threads\AppThread.cpp" />
+    <ClCompile Include="Scripts\Utilities\MathUtils.cpp" />
     <ClCompile Include="Scripts\Gameobjects\IconObject\IconSpawner.cpp" />
     <ClCompile Include="Scripts\Gameobjects\IconObject\IconObject.cpp" />
-    <ClCompile Include="Scripts\Utilities\FPSCounter.cpp" />
-    <ClCompile Include="Scripts\Utilities\FontManager.cpp" />
+    <ClCompile Include="Scripts\Utilities\Statistics\FPSCounter.cpp" />
+    <ClCompile Include="Scripts\Utilities\Manager\FontManager.cpp" />
     <ClCompile Include="Scripts\Gameobjects\Utilities\GameObjectManager.cpp" />
     <ClCompile Include="Scripts\Gameobjects\BackgroundObject\BGMovement.cpp" />
     <ClCompile Include="Scripts\Gameobjects\BackgroundObject\BGObject.cpp" />
@@ -160,15 +162,18 @@
     <ClCompile Include="Scripts\BaseWindow\BaseWindow.cpp" />
     <ClCompile Include="Scripts\main.cpp" />
     <ClCompile Include="Scripts\Components\Renderer\SpriteRenderer.cpp" />
-    <ClCompile Include="Scripts\Utilities\TextureManager.cpp" />
+    <ClCompile Include="Scripts\Utilities\Manager\TextureManager.cpp" />
     <ClCompile Include="Scripts\Components\Renderer\TextRenderer.cpp" />
     <ClCompile Include="Scripts\Gameobjects\UI\UIText.cpp" />
+    <ClCompile Include="Scripts\Utilities\StringUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\Utilities\Threads\AppThread.h" />
+    <ClInclude Include="Scripts\Utilities\MathUtils.h" />
     <ClInclude Include="Scripts\Gameobjects\IconObject\IconSpawner.h" />
     <ClInclude Include="Scripts\Gameobjects\IconObject\IconObject.h" />
-    <ClInclude Include="Scripts\Utilities\FPSCounter.h" />
-    <ClInclude Include="Scripts\Utilities\FontManager.h" />
+    <ClInclude Include="Scripts\Utilities\Statistics\FPSCounter.h" />
+    <ClInclude Include="Scripts\Utilities\Manager\FontManager.h" />
     <ClInclude Include="Scripts\Gameobjects\Utilities\GameObjectManager.h" />
     <ClInclude Include="Scripts\Gameobjects\BackgroundObject\BGMovement.h" />
     <ClInclude Include="Scripts\Gameobjects\BackgroundObject\BGObject.h" />
@@ -177,10 +182,11 @@
     <ClInclude Include="Scripts\Gameobjects\Utilities\AGameObject.h" />
     <ClInclude Include="Scripts\BaseWindow\BaseWindow.h" />
     <ClInclude Include="Scripts\Components\Renderer\SpriteRenderer.h" />
-    <ClInclude Include="Scripts\Utilities\TextureManager.h" />
+    <ClInclude Include="Scripts\Utilities\Manager\TextureManager.h" />
     <ClInclude Include="Scripts\Utilities\Typedefs.h" />
     <ClInclude Include="Scripts\Components\Renderer\TextRenderer.h" />
     <ClInclude Include="Scripts\Gameobjects\UI\UIText.h" />
+    <ClInclude Include="Scripts\Utilities\StringUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,5 @@
 #include "TextRenderer.h"
-#include "Utilities/FontManager.h"
+#include "Utilities/Manager/FontManager.h"
 
 TextRenderer::TextRenderer(sf::Text* text, std::string name, const sf::Color& fillColor,
                            const sf::Color& outlineColor, float outlineThickness, float size, std::string defaultText) : Renderer(name)

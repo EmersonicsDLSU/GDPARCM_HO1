@@ -1,7 +1,7 @@
 #include "UIText.h"
 
 #include "Components/Renderer/Renderer.h"
-#include "Utilities/FontManager.h"
+#include "Utilities/Manager/FontManager.h"
 
 UIText::UIText(String name) : AGameObject(name)
 {
