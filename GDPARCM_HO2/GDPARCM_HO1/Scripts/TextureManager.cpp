@@ -5,6 +5,7 @@
 #include "StringUtils.h"
 #include "IETThread.h"
 #include "StreamAssetLoader.h"
+#include "ThreadPool.h"
 
 //a singleton class
 TextureManager* TextureManager::sharedInstance = NULL;
@@ -88,11 +89,12 @@ void TextureManager::loadSingleStreamAsset(int index, IExecutionEvent* execution
 		{
 			//simulate loading of very large file
 			//<code here for thread sleeping. Fill this up only when instructor told so.>
-			IETThread::sleep(200);
+			//IETThread::sleep(200);
 
 			String path = entry.path().generic_string();
 			StreamAssetLoader* assetLoader = new StreamAssetLoader(path, executionEvent);
-			assetLoader->start();
+			
+			threadPool->ScheduleTask(assetLoader);
 			break;
 		}
 

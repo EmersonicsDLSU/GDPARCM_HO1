@@ -1,7 +1,9 @@
 #pragma once
 #include <unordered_map>
+
 #include "SFML/Graphics.hpp"
 
+class ThreadPool;
 class IExecutionEvent;
 
 class TextureManager
@@ -38,5 +40,7 @@ private:
 	int streamingAssetCount = 0;
 
 	void countStreamingAssets();
+
+	ThreadPool* threadPool;
 
 };

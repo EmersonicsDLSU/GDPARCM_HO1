@@ -148,6 +148,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scripts\IFinishedTask.cpp" />
+    <ClCompile Include="Scripts\IWorkerAction.cpp" />
+    <ClCompile Include="Scripts\PoolWorkerThread.cpp" />
     <ClCompile Include="Scripts\IExecutionEvent.cpp" />
     <ClCompile Include="Scripts\AGameObject.cpp" />
     <ClCompile Include="Scripts\BaseRunner.cpp" />
@@ -162,8 +165,12 @@
     <ClCompile Include="Scripts\TextureDisplay.cpp" />
     <ClCompile Include="Scripts\TextureManager.cpp" />
     <ClCompile Include="Scripts\StreamAssetLoader.cpp" />
+    <ClCompile Include="Scripts\ThreadPool.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\IFinishedTask.h" />
+    <ClInclude Include="Scripts\IWorkerAction.h" />
+    <ClInclude Include="Scripts\PoolWorkerThread.h" />
     <ClInclude Include="Scripts\IExecutionEvent.h" />
     <ClInclude Include="Scripts\AGameObject.h" />
     <ClInclude Include="Scripts\BaseRunner.h" />
@@ -177,6 +184,7 @@
     <ClInclude Include="Scripts\TextureDisplay.h" />
     <ClInclude Include="Scripts\TextureManager.h" />
     <ClInclude Include="Scripts\StreamAssetLoader.h" />
+    <ClInclude Include="Scripts\ThreadPool.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

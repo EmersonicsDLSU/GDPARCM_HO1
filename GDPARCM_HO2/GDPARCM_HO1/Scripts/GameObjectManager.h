@@ -7,6 +7,7 @@
 #include <string>
 #include "AGameObject.h"
 #include <SFML/Graphics.hpp>
+#include <mutex>
 
 typedef std::unordered_map<std::string, AGameObject*> HashTable;
 typedef std::vector<AGameObject*> List;
@@ -33,5 +34,8 @@ class GameObjectManager
 
 		HashTable gameObjectMap;
 		List gameObjectList;
+
+		typedef std::mutex Mutex;
+		Mutex guard;
 };
 
