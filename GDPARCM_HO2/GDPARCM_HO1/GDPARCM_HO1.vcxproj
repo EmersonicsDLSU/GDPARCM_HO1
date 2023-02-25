@@ -144,7 +144,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
-      <AdditionalDependencies>winmm.lib;opengl32.lib;freetype.lib;sfml-graphics-s.lib;sfml-window-s.lib;sfml-audio-s.lib;sfml-network-s.lib;sfml-system-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;opengl32.lib;freetype.lib;sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

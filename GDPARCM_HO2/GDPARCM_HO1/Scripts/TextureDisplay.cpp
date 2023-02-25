@@ -28,7 +28,7 @@ void TextureDisplay::update(sf::Time deltaTime)
 	{
 		startedStreaming = true;
 		ticks = 0.0f;
-		TextureManager::getInstance()->loadStreamingAssets();
+		TextureManager::getInstance()->loadStreamingAssets(this);
 	}
 	else if (streamingType == StreamingType::SINGLE_STREAM && ticks > STREAMING_LOAD_DELAY)
 	{
@@ -42,6 +42,7 @@ void TextureDisplay::onFinishedExecution()
 {
 	// executes spawn once the texture is ready
 	spawnObject();
+
 }
 
 void TextureDisplay::spawnObject()

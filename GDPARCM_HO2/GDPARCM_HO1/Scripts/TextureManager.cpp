@@ -21,6 +21,9 @@ TextureManager* TextureManager::getInstance() {
 
 TextureManager::TextureManager()
 {
+	threadPool = new ThreadPool("threadPool", 64);
+	threadPool->StartScheduler();
+
 	this->countStreamingAssets();
 }
 
@@ -43,7 +46,7 @@ void TextureManager::loadStreamingAssets()
 {
 	for (const auto& entry : std::filesystem::directory_iterator(STREAMING_PATH)) {
 		// simulate loading of very large file
-		IETThread::sleep(200);
+		//IETThread::sleep(1000);
 
 		String path = entry.path().generic_string();
 		std::vector<String> tokens = StringUtils::split(path, '/');
@@ -51,6 +54,19 @@ void TextureManager::loadStreamingAssets()
 		instantiateAsTexture(path, assetName, true);
 
 		std::cout << "[TextureManager] Loaded streaming texture: " << assetName << std::endl;
+	}
+
+}
+
+void TextureManager::loadStreamingAssets(IExecutionEvent* executionEvent)
+{
+	int i = 0;
+	for (const auto& entry : std::filesystem::directory_iterator(STREAMING_PATH)) {
+		//IETThread::sleep(200);
+		String path = entry.path().generic_string();
+		StreamAssetLoader* assetLoader = new StreamAssetLoader(path, executionEvent);
+		std::cout << "Schedule Task!: " << i++ << std::endl;
+		threadPool->ScheduleTask(assetLoader);
 	}
 }
 

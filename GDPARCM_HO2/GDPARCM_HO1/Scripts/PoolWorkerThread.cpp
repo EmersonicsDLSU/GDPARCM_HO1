@@ -5,12 +5,12 @@
 
 PoolWorkerThread::PoolWorkerThread(int id, IFinishedTask* finishedTask) : id(id), finishedTask(finishedTask)
 {
+	
 }
 
 PoolWorkerThread::~PoolWorkerThread()
 {
-	delete action;
-	delete finishedTask;
+
 }
 
 int PoolWorkerThread::GetThreadID()
@@ -20,8 +20,14 @@ int PoolWorkerThread::GetThreadID()
 
 void PoolWorkerThread::AssignTask(IWorkerAction* action)
 {
+	this->action = action;
 }
 
 void PoolWorkerThread::run()
 {
+	if (action != nullptr)
+	{
+		action->OnStartTask();
+		finishedTask->OnFinished(id);
+	}
 }

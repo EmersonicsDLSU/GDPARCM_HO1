@@ -29,16 +29,42 @@ void ThreadPool::StartScheduler()
 
 void ThreadPool::StopScheduler()
 {
+	running = false;
 }
 
 void ThreadPool::ScheduleTask(IWorkerAction* action)
 {
+	pendingActions.push(action);
 }
 
 void ThreadPool::run()
 {
+	while (running)
+	{
+		if (!pendingActions.empty())
+		{
+			if (!inactiveThreads.empty())
+			{
+				PoolWorkerThread* thread = inactiveThreads.front();
+				inactiveThreads.pop();
+				activeThreads.insert({thread->GetThreadID(), thread});
+
+				thread->AssignTask(pendingActions.front());
+				thread->start();
+				pendingActions.pop();
+			}
+		}
+	}
 }
 
 void ThreadPool::OnFinished(int threadID)
 {
+	if (activeThreads[threadID] != nullptr)
+	{
+		// create new instance
+		delete activeThreads[threadID];
+		activeThreads.erase(threadID);
+
+		inactiveThreads.push(new PoolWorkerThread(threadID, this));
+	}
 }
