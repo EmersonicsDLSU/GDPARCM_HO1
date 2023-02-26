@@ -55,9 +55,6 @@ void BaseWindow::Run()
             Update(elapsedTime);
         }
         Render();
-
-        // 1 second delay
-        sleep(100);
     }
 }
 

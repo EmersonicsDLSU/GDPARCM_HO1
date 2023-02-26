@@ -1,6 +1,6 @@
 #pragma once
-#include "AGameObject.h"
-#include "IExecutionEvent.h"
+#include "Gameobjects/Utilities/AGameObject.h"
+#include "Threads/IExecutionEvent.h"
 
 class IconObject;
 /// <summary>
@@ -10,9 +10,9 @@ class TextureDisplay: public AGameObject, public IExecutionEvent
 {
 public:
 	TextureDisplay();
-	void initialize();
-	void processInput(sf::Event event);
-	void update(sf::Time deltaTime);
+	void Initialize();
+	void ProcessInput(sf::Event event);
+	void Update(sf::Time deltaTime);
 	void onFinishedExecution();
 
 private:

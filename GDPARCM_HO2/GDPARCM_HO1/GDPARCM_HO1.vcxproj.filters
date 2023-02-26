@@ -18,108 +18,153 @@
     <ClCompile Include="Scripts\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\AGameObject.cpp">
+    <ClCompile Include="Scripts\Gameobjects\Utilities\AGameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\BaseRunner.cpp">
+    <ClCompile Include="Scripts\BaseRunner\BaseRunner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\BGObject.cpp">
+    <ClCompile Include="Scripts\Gameobjects\BackgroundObject\BGObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\FPSCounter.cpp">
+    <ClCompile Include="Scripts\Utilities\Statistics\FPSCounter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\GameObjectManager.cpp">
+    <ClCompile Include="Scripts\Gameobjects\Utilities\GameObjectManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\IconObject.cpp">
+    <ClCompile Include="Scripts\Gameobjects\IconObject\IconObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\IETThread.cpp">
+    <ClCompile Include="Scripts\Threads\IETThread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\MathUtils.cpp">
+    <ClCompile Include="Scripts\Utilities\Utils\MathUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\StringUtils.cpp">
+    <ClCompile Include="Scripts\Utilities\Utils\StringUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\TextureDisplay.cpp">
+    <ClCompile Include="Scripts\Components\Renderer\TextureDisplay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\TextureManager.cpp">
+    <ClCompile Include="Scripts\Utilities\Manager\TextureManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\StreamAssetLoader.cpp">
+    <ClCompile Include="Scripts\Threads\StreamAssetLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\IExecutionEvent.cpp">
+    <ClCompile Include="Scripts\Threads\IExecutionEvent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\PoolWorkerThread.cpp">
+    <ClCompile Include="Scripts\Threads\PoolWorkerThread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\IWorkerAction.cpp">
+    <ClCompile Include="Scripts\Threads\IWorkerAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\IFinishedTask.cpp">
+    <ClCompile Include="Scripts\Threads\IFinishedTask.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\ThreadPool.cpp">
+    <ClCompile Include="Scripts\Threads\ThreadPool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Components\Renderer\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Components\Renderer\SpriteRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Components\Utilities\AComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Gameobjects\BackgroundObject\BGMovement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Components\Renderer\TextRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Utilities\Manager\FontManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Gameobjects\UI\UIText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scripts\AGameObject.h">
+    <ClInclude Include="Scripts\Gameobjects\Utilities\AGameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\BaseRunner.h">
+    <ClInclude Include="Scripts\BaseRunner\BaseRunner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\BGObject.h">
+    <ClInclude Include="Scripts\Gameobjects\BackgroundObject\BGObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\FPSCounter.h">
+    <ClInclude Include="Scripts\Utilities\Statistics\FPSCounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\GameObjectManager.h">
+    <ClInclude Include="Scripts\Gameobjects\Utilities\GameObjectManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\IconObject.h">
+    <ClInclude Include="Scripts\Gameobjects\IconObject\IconObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\IETThread.h">
+    <ClInclude Include="Scripts\Threads\IETThread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\MathUtils.h">
+    <ClInclude Include="Scripts\Utilities\Utils\MathUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\StringUtils.h">
+    <ClInclude Include="Scripts\Utilities\Utils\StringUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\TextureDisplay.h">
+    <ClInclude Include="Scripts\Components\Renderer\TextureDisplay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\TextureManager.h">
+    <ClInclude Include="Scripts\Utilities\Manager\TextureManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\StreamAssetLoader.h">
+    <ClInclude Include="Scripts\Threads\StreamAssetLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\IExecutionEvent.h">
+    <ClInclude Include="Scripts\Threads\IExecutionEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\PoolWorkerThread.h">
+    <ClInclude Include="Scripts\Threads\PoolWorkerThread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\IWorkerAction.h">
+    <ClInclude Include="Scripts\Threads\IWorkerAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\IFinishedTask.h">
+    <ClInclude Include="Scripts\Threads\IFinishedTask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\ThreadPool.h">
+    <ClInclude Include="Scripts\Threads\ThreadPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Components\Renderer\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Components\Renderer\SpriteRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Components\Utilities\AComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Gameobjects\BackgroundObject\BGMovement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Utilities\Typedefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Components\Renderer\TextRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Utilities\Manager\FontManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Gameobjects\UI\UIText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

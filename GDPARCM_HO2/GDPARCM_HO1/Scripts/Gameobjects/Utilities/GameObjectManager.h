@@ -1,6 +1,6 @@
 #pragma once
 //singleton class
-/* Game object manager contains all of the declared game object classes and calls the update function
+/* Game object manager contains all of the declared game object classes and calls the Update function
  */
 #include <unordered_map>
 #include <vector>
@@ -15,16 +15,19 @@ typedef std::vector<AGameObject*> List;
 class GameObjectManager
 {
 	public:
-		static GameObjectManager* getInstance();
-		AGameObject* findObjectByName(AGameObject::String name);
-		List getAllObjects();
-		int activeObjects();
-		void processInput(sf::Event event);
-		void update(sf::Time deltaTime);
-		void draw(sf::RenderWindow* window);
-		void addObject(AGameObject* gameObject);
-		void deleteObject(AGameObject* gameObject);
-		void deleteObjectByName(AGameObject::String name);
+		~GameObjectManager();
+
+		static GameObjectManager* GetInstance();
+		AGameObject* FindObjectByName(AGameObject::String name);
+		List GetAllObjects();
+		int GetActiveObjectsSize();
+		void ProcessInput(sf::Event event);
+		void Update(sf::Time deltaTime);
+		void Draw(sf::RenderWindow* window);
+		void AddObject(AGameObject* gameObject);
+		void DeleteObject(AGameObject* gameObject);
+		void DeleteAllObjectsInScene();
+		void DeleteObjectByName(AGameObject::String name);
 
 	private:
 		GameObjectManager() {};

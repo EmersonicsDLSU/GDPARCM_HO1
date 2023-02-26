@@ -1,25 +1,26 @@
 #include "TextureDisplay.h"
 #include <iostream>
-#include "TextureManager.h"
-#include "BaseRunner.h"
-#include "GameObjectManager.h"
-#include "IconObject.h"
+#include "BaseRunner/BaseRunner.h"
+#include "Gameobjects/IconObject/IconObject.h"
+#include "Gameobjects/Utilities/GameObjectManager.h"
+#include "Utilities/Manager/TextureManager.h"
+
 TextureDisplay::TextureDisplay(): AGameObject("TextureDisplay")
 {
 	
 }
 
-void TextureDisplay::initialize()
+void TextureDisplay::Initialize()
 {
 	
 }
 
-void TextureDisplay::processInput(sf::Event event)
+void TextureDisplay::ProcessInput(sf::Event event)
 {
 	
 }
 
-void TextureDisplay::update(sf::Time deltaTime)
+void TextureDisplay::Update(sf::Time deltaTime)
 {
 	this->ticks += BaseRunner::TIME_PER_FRAME.asMilliseconds();
 	
@@ -28,12 +29,12 @@ void TextureDisplay::update(sf::Time deltaTime)
 	{
 		startedStreaming = true;
 		ticks = 0.0f;
-		TextureManager::getInstance()->loadStreamingAssets(this);
+		TextureManager::GetInstance()->LoadStreamingAssets(this);
 	}
 	else if (streamingType == StreamingType::SINGLE_STREAM && ticks > STREAMING_LOAD_DELAY)
 	{
 		ticks = 0.0f;
-		TextureManager::getInstance()->loadSingleStreamAsset(numDisplayed, this);
+		TextureManager::GetInstance()->LoadSingleStreamAsset(numDisplayed, this);
 		numDisplayed++;
 	}
 }
@@ -55,7 +56,7 @@ void TextureDisplay::spawnObject()
 	int IMG_WIDTH = 68; int IMG_HEIGHT = 68;
 	float x = this->columnGrid * IMG_WIDTH;
 	float y = this->rowGrid * IMG_HEIGHT;
-	iconObj->setPosition(x, y);
+	iconObj->SetPosition(x, y);
 
 	std::cout << "Set position: " << x << " " << y << std::endl;
 
@@ -65,5 +66,5 @@ void TextureDisplay::spawnObject()
 		this->columnGrid = 0;
 		this->rowGrid++;
 	}
-	GameObjectManager::getInstance()->addObject(iconObj);
+	GameObjectManager::GetInstance()->AddObject(iconObj);
 }

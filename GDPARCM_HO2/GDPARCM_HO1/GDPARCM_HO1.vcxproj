@@ -72,11 +72,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\SFML-2.5.1\include;</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\SFML-2.5.1\include;..\GDPARCM_HO1\Scripts;</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);..\SFML-2.5.1\lib;</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\SFML-2.5.1\include;</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\SFML-2.5.1\include;..\GDPARCM_HO1\Scripts;</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);..\SFML-2.5.1\lib;</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -148,43 +148,58 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Scripts\IFinishedTask.cpp" />
-    <ClCompile Include="Scripts\IWorkerAction.cpp" />
-    <ClCompile Include="Scripts\PoolWorkerThread.cpp" />
-    <ClCompile Include="Scripts\IExecutionEvent.cpp" />
-    <ClCompile Include="Scripts\AGameObject.cpp" />
-    <ClCompile Include="Scripts\BaseRunner.cpp" />
-    <ClCompile Include="Scripts\BGObject.cpp" />
-    <ClCompile Include="Scripts\FPSCounter.cpp" />
-    <ClCompile Include="Scripts\GameObjectManager.cpp" />
-    <ClCompile Include="Scripts\IconObject.cpp" />
-    <ClCompile Include="Scripts\IETThread.cpp" />
+    <ClCompile Include="Scripts\Utilities\Manager\FontManager.cpp" />
+    <ClCompile Include="Scripts\Gameobjects\BackgroundObject\BGMovement.cpp" />
+    <ClCompile Include="Scripts\Components\Utilities\AComponent.cpp" />
+    <ClCompile Include="Scripts\Components\Renderer\Renderer.cpp" />
+    <ClCompile Include="Scripts\Threads\IFinishedTask.cpp" />
+    <ClCompile Include="Scripts\Threads\IWorkerAction.cpp" />
+    <ClCompile Include="Scripts\Threads\PoolWorkerThread.cpp" />
+    <ClCompile Include="Scripts\Threads\IExecutionEvent.cpp" />
+    <ClCompile Include="Scripts\Gameobjects\Utilities\AGameObject.cpp" />
+    <ClCompile Include="Scripts\BaseRunner\BaseRunner.cpp" />
+    <ClCompile Include="Scripts\Gameobjects\BackgroundObject\BGObject.cpp" />
+    <ClCompile Include="Scripts\Utilities\Statistics\FPSCounter.cpp" />
+    <ClCompile Include="Scripts\Gameobjects\Utilities\GameObjectManager.cpp" />
+    <ClCompile Include="Scripts\Gameobjects\IconObject\IconObject.cpp" />
+    <ClCompile Include="Scripts\Threads\IETThread.cpp" />
     <ClCompile Include="Scripts\main.cpp" />
-    <ClCompile Include="Scripts\MathUtils.cpp" />
-    <ClCompile Include="Scripts\StringUtils.cpp" />
-    <ClCompile Include="Scripts\TextureDisplay.cpp" />
-    <ClCompile Include="Scripts\TextureManager.cpp" />
-    <ClCompile Include="Scripts\StreamAssetLoader.cpp" />
-    <ClCompile Include="Scripts\ThreadPool.cpp" />
+    <ClCompile Include="Scripts\Utilities\Utils\MathUtils.cpp" />
+    <ClCompile Include="Scripts\Utilities\Utils\StringUtils.cpp" />
+    <ClCompile Include="Scripts\Components\Renderer\TextureDisplay.cpp" />
+    <ClCompile Include="Scripts\Utilities\Manager\TextureManager.cpp" />
+    <ClCompile Include="Scripts\Threads\StreamAssetLoader.cpp" />
+    <ClCompile Include="Scripts\Threads\ThreadPool.cpp" />
+    <ClCompile Include="Scripts\Components\Renderer\SpriteRenderer.cpp" />
+    <ClCompile Include="Scripts\Components\Renderer\TextRenderer.cpp" />
+    <ClCompile Include="Scripts\Gameobjects\UI\UIText.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scripts\IFinishedTask.h" />
-    <ClInclude Include="Scripts\IWorkerAction.h" />
-    <ClInclude Include="Scripts\PoolWorkerThread.h" />
-    <ClInclude Include="Scripts\IExecutionEvent.h" />
-    <ClInclude Include="Scripts\AGameObject.h" />
-    <ClInclude Include="Scripts\BaseRunner.h" />
-    <ClInclude Include="Scripts\BGObject.h" />
-    <ClInclude Include="Scripts\FPSCounter.h" />
-    <ClInclude Include="Scripts\GameObjectManager.h" />
-    <ClInclude Include="Scripts\IconObject.h" />
-    <ClInclude Include="Scripts\IETThread.h" />
-    <ClInclude Include="Scripts\MathUtils.h" />
-    <ClInclude Include="Scripts\StringUtils.h" />
-    <ClInclude Include="Scripts\TextureDisplay.h" />
-    <ClInclude Include="Scripts\TextureManager.h" />
-    <ClInclude Include="Scripts\StreamAssetLoader.h" />
-    <ClInclude Include="Scripts\ThreadPool.h" />
+    <ClInclude Include="Scripts\Utilities\Manager\FontManager.h" />
+    <ClInclude Include="Scripts\Gameobjects\BackgroundObject\BGMovement.h" />
+    <ClInclude Include="Scripts\Components\Utilities\AComponent.h" />
+    <ClInclude Include="Scripts\Components\Renderer\Renderer.h" />
+    <ClInclude Include="Scripts\Threads\IFinishedTask.h" />
+    <ClInclude Include="Scripts\Threads\IWorkerAction.h" />
+    <ClInclude Include="Scripts\Threads\PoolWorkerThread.h" />
+    <ClInclude Include="Scripts\Threads\IExecutionEvent.h" />
+    <ClInclude Include="Scripts\Gameobjects\Utilities\AGameObject.h" />
+    <ClInclude Include="Scripts\BaseRunner\BaseRunner.h" />
+    <ClInclude Include="Scripts\Gameobjects\BackgroundObject\BGObject.h" />
+    <ClInclude Include="Scripts\Utilities\Statistics\FPSCounter.h" />
+    <ClInclude Include="Scripts\Gameobjects\Utilities\GameObjectManager.h" />
+    <ClInclude Include="Scripts\Gameobjects\IconObject\IconObject.h" />
+    <ClInclude Include="Scripts\Threads\IETThread.h" />
+    <ClInclude Include="Scripts\Utilities\Typedefs.h" />
+    <ClInclude Include="Scripts\Utilities\Utils\MathUtils.h" />
+    <ClInclude Include="Scripts\Utilities\Utils\StringUtils.h" />
+    <ClInclude Include="Scripts\Components\Renderer\TextureDisplay.h" />
+    <ClInclude Include="Scripts\Utilities\Manager\TextureManager.h" />
+    <ClInclude Include="Scripts\Threads\StreamAssetLoader.h" />
+    <ClInclude Include="Scripts\Threads\ThreadPool.h" />
+    <ClInclude Include="Scripts\Components\Renderer\SpriteRenderer.h" />
+    <ClInclude Include="Scripts\Components\Renderer\TextRenderer.h" />
+    <ClInclude Include="Scripts\Gameobjects\UI\UIText.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

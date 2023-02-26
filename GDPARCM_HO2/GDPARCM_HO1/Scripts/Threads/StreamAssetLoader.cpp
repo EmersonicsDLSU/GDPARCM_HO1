@@ -1,8 +1,8 @@
 #include "StreamAssetLoader.h"
 
 #include "IExecutionEvent.h"
-#include "StringUtils.h"
-#include "TextureManager.h"
+#include "Utilities/Manager/TextureManager.h"
+#include "Utilities/Utils/StringUtils.h"
 
 StreamAssetLoader::StreamAssetLoader(String path, IExecutionEvent* executionEvent)
 {
@@ -23,7 +23,7 @@ void StreamAssetLoader::OnStartTask()
 
 	std::vector<String> tokens = StringUtils::split(path, '/');
 	String assetName = StringUtils::split(tokens[tokens.size() - 1], '.')[0];
-	TextureManager::getInstance()->instantiateAsTexture(path, assetName, true);
+	TextureManager::GetInstance()->InstantiateAsTexture(path, assetName, true);
 
 	std::cout << "[TextureManager] Loaded streaming texture: " << assetName << std::endl;
 	if (execEvent != nullptr)

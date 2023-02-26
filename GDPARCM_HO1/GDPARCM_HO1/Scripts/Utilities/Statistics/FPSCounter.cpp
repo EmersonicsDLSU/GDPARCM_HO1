@@ -19,6 +19,11 @@ void FPSCounter::Initialize()
 	AGameObject::Initialize();
 }
 
+void FPSCounter::ProcessInput(sf::Event event)
+{
+	AGameObject::ProcessInput(event);
+}
+
 void FPSCounter::Update(sf::Time deltaTime)
 {
     AGameObject::Update(deltaTime);
@@ -28,6 +33,11 @@ void FPSCounter::Update(sf::Time deltaTime)
     sprintf(str, "%.1f", fps);
     string strFPS = str;
     button_1Text->SetText("FPS: " + strFPS);
+}
+
+void FPSCounter::Draw(sf::RenderWindow* targetWindow, sf::RenderStates renderStates)
+{
+	AGameObject::Draw(targetWindow, renderStates);
 }
 
 float FPSCounter::GetFPS()
