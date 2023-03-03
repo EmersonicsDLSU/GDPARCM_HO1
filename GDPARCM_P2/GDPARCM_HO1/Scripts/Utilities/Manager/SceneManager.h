@@ -10,10 +10,8 @@ class SceneManager
 {
 public:
 	//scene names
-	static String MAIN_MENU_SCENE_NAME;
-	static String GAME_SCENE_NAME;
-	static String GAME_SCENE2_NAME;
-	static String GAME_SCENE3_NAME;
+	static String LOADING_SCENE;
+	static String GAME_SCENE;
 
 	static SceneManager* getInstance();
 	void registerScene(AScene* scene);

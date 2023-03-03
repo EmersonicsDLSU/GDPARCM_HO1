@@ -4,11 +4,11 @@
 class ApplicationManager
 {
 public:
-	static void initialize(sf::RenderWindow* window);
-	static ApplicationManager* getInstance();
-	void applicationQuit();
-	void pauseApplication();
-	void resumeApplication();
+	static void Initialize(sf::RenderWindow* window);
+	static ApplicationManager* GetInstance();
+	void ApplicationQuit();
+	void PauseApplication();
+	void ResumeApplication();
 	bool isPaused();
 
 	enum GameState { Running = 0, Paused = 1 };

@@ -3,17 +3,15 @@
 
 #include "Scene/AScene.h"
 
-String SceneManager::MAIN_MENU_SCENE_NAME = "MainMenuScene";
-String SceneManager::GAME_SCENE_NAME = "GameScene";
-String SceneManager::GAME_SCENE2_NAME = "GameScene2";
-String SceneManager::GAME_SCENE3_NAME = "GameScene3";
+String SceneManager::LOADING_SCENE = "LoadScene";
+String SceneManager::GAME_SCENE = "GameScene";
 
-SceneManager* SceneManager::sharedInstance = NULL;
+SceneManager* SceneManager::sharedInstance = nullptr;
 
 using namespace std;
 SceneManager* SceneManager::getInstance()
 {
-	if (sharedInstance == NULL) {
+	if (sharedInstance == nullptr) {
 		sharedInstance = new SceneManager();
 	}
 
@@ -47,8 +45,7 @@ void SceneManager::loadScene(string name)
 
 void SceneManager::unloadScene()
 {
-	if (activeScene != NULL) {
-		cout << "HELLO" << endl;
+	if (activeScene != nullptr) {
 		activeScene->onUnloadObjects();
 		activeScene->onUnloadResources();
 	}

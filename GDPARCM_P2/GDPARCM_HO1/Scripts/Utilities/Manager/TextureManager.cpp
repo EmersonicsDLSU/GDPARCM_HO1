@@ -8,10 +8,10 @@
 #include "Utilities/Utils/StringUtils.h"
 
 //a singleton class
-TextureManager* TextureManager::sharedInstance = NULL;
+TextureManager* TextureManager::sharedInstance = nullptr;
 
 TextureManager* TextureManager::GetInstance() {
-	if (sharedInstance == NULL) {
+	if (sharedInstance == nullptr) {
 		//initialize
 		sharedInstance = new TextureManager();
 	}
@@ -42,22 +42,6 @@ void TextureManager::LoadFromAssetList()
 	}
 }
 
-void TextureManager::LoadStreamingAssets()
-{
-	for (const auto& entry : std::filesystem::directory_iterator(STREAMING_PATH)) {
-		// simulate loading of very large file
-		//IETThread::sleep(1000);
-
-		String path = entry.path().generic_string();
-		std::vector<String> tokens = StringUtils::split(path, '/');
-		String assetName = StringUtils::split(tokens[tokens.size() - 1], '.')[0];
-		InstantiateAsTexture(path, assetName, true);
-
-		//std::cout << "[TextureManager] Loaded streaming texture: " << assetName << std::endl;
-	}
-
-}
-
 void TextureManager::LoadStreamingAssets(IExecutionEvent* executionEvent)
 {
 	int i = 0;
@@ -65,34 +49,7 @@ void TextureManager::LoadStreamingAssets(IExecutionEvent* executionEvent)
 		//IETThread::sleep(200);
 		String path = entry.path().generic_string();
 		StreamAssetLoader* assetLoader = new StreamAssetLoader(path, executionEvent);
-		std::cout << "Schedule Task!: " << i++ << std::endl;
 		threadPool->ScheduleTask(assetLoader);
-	}
-}
-
-void TextureManager::LoadSingleStreamAsset(int index)
-{
-	int fileNum = 0;
-	
-	for (const auto& entry : std::filesystem::directory_iterator(STREAMING_PATH)) {
-		if(index == fileNum)
-		{
-			//simulate loading of very large file
-			//<code here for thread sleeping. Fill this up only when instructor told so.>
-			//IETThread::sleep(200);
-
-			String path = entry.path().generic_string();
-			std::vector <String > tokens = StringUtils::split(path, '/');
-			
-			//<code here for loading asset>
-			String assetName = StringUtils::split(tokens[tokens.size() - 1], '.')[0];
-			InstantiateAsTexture(path, assetName, true);
-	
-			std::cout << "[TextureManager] Loaded streaming texture: " << assetName << std::endl;
-			break;
-		}
-
-		fileNum++;
 	}
 }
 
@@ -150,12 +107,16 @@ int TextureManager::GetNumLoadedStreamTextures() const
 	return this->streamTextureList.size();
 }
 
+int TextureManager::GetStreamingAssetCount() const
+{
+	return streamingAssetCount;
+}
+
 void TextureManager::CountStreamingAssets()
 {
-	this->streamingAssetCount = 0;
-	for (const auto& entry : std::filesystem::directory_iterator(STREAMING_PATH)) {
-		this->streamingAssetCount++;
-	}
+	streamingAssetCount = 0;
+	streamingAssetCount = std::distance(std::filesystem::directory_iterator(STREAMING_PATH),
+		std::filesystem::directory_iterator{});
 	std::cout << "[TextureManager] Number of streaming assets: " << this->streamingAssetCount << std::endl;
 }
 
@@ -173,5 +134,4 @@ void TextureManager::InstantiateAsTexture(String path, String assetName, bool is
 	{
 		this->baseTextureList.push_back(texture);
 	}
-	
 }

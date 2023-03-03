@@ -84,20 +84,20 @@ void LoadingScreen::onButtonClick(UIButton* button)
 void LoadingScreen::onButtonReleased(UIButton* button)
 {
 	if (button->GetName() == "button_1") {
-		SceneManager::getInstance()->loadScene(SceneManager::GAME_SCENE_NAME);
-		ApplicationManager::getInstance()->resumeApplication();
+		SceneManager::getInstance()->loadScene(SceneManager::LOADING_SCENE);
+		ApplicationManager::GetInstance()->ResumeApplication();
 		SFXManager::getInstance()->PauseSound("MainMenuBG");
 	}
 	/*
 	else if (button->getName() == "button_2") {
 		QuitScreen* quitScreen = new QuitScreen("QuitScreen");
 		quitScreen->markMainMenuQuit();
-		GameObjectManager::getInstance()->addObject(quitScreen);
+		GameObjectManager::GetInstance()->addObject(quitScreen);
 	}
 	else if (button->getName() == "button_3") {
 		InstructionsMenu* insScreen = new InstructionsMenu("insScreen");
 		insScreen->markMainMenuQuit();
-		GameObjectManager::getInstance()->addObject(insScreen);
+		GameObjectManager::GetInstance()->addObject(insScreen);
 	}
 	*/
 }

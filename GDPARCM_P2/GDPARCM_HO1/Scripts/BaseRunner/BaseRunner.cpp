@@ -1,12 +1,12 @@
 #include "BaseRunner.h"
 
-#include "Components/Renderer/TextureDisplay.h"
-#include "Gameobjects/BackgroundObject/BGObject.h"
 #include "Gameobjects/Utilities/GameObjectManager.h"
+#include "Scene/LoadingScene/LoadingScene.h"
+#include "Utilities/Manager/ApplicationManager.h"
 #include "Utilities/Manager/FontManager.h"
+#include "Utilities/Manager/SceneManager.h"
 #include "Utilities/Manager/SFXManager.h"
 #include "Utilities/Manager/TextureManager.h"
-#include "Utilities/Statistics/FPSCounter.h"
 
 /// <summary>
 /// This demonstrates a running parallax background where after X seconds, a batch of assets will be streamed and loaded.
@@ -19,19 +19,16 @@ BaseRunner::BaseRunner() :
 	window.setFramerateLimit(60);
 
 	//load initial textures
+	ApplicationManager::GetInstance()->Initialize(&this->window);
 	TextureManager::GetInstance()->LoadFromAssetList();
 	FontManager::GetInstance()->LoadAll();
 	SFXManager::getInstance()->LoadAll();
 
-	//load objects
-	BGObject* bgObject = new BGObject("BGObject", "Desert");
-	GameObjectManager::GetInstance()->AddObject(bgObject);
+	// register scenes
+	SceneManager::getInstance()->registerScene(new LoadingScene());
 
-	TextureDisplay* display = new TextureDisplay();
-	GameObjectManager::GetInstance()->AddObject(display);
-
-	FPSCounter* fpsCounter = new FPSCounter();
-	GameObjectManager::GetInstance()->AddObject(fpsCounter);
+	// load first scene
+	SceneManager::getInstance()->loadScene(SceneManager::LOADING_SCENE);
 }
 
 void BaseRunner::run() {
@@ -51,7 +48,9 @@ void BaseRunner::run() {
 		}
 
 		render();
+		SceneManager::getInstance()->checkLoadScene();
 	}
+
 }
 
 void BaseRunner::processEvents()
@@ -71,7 +70,10 @@ void BaseRunner::processEvents()
 }
 
 void BaseRunner::update(sf::Time elapsedTime) {
-	GameObjectManager::GetInstance()->Update(elapsedTime);
+	if (!ApplicationManager::GetInstance()->isPaused()) {
+		GameObjectManager::GetInstance()->Update(elapsedTime);
+		SceneManager::getInstance()->checkLoadScene();
+	}
 }
 
 void BaseRunner::render() {

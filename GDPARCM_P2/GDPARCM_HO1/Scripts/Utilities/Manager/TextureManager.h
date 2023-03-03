@@ -16,15 +16,14 @@ public:
 public:
 	static TextureManager* GetInstance();
 	void LoadFromAssetList(); //loading of all assets needed for startup
-	void LoadStreamingAssets(); //loading of assets during runtime
 	void LoadStreamingAssets(IExecutionEvent* executionEvent); //loading of assets during runtime
-	void LoadSingleStreamAsset(int index); //loads a single streaming asset based on index in directory
 	void LoadSingleStreamAsset(int index, IExecutionEvent* executionEvent);
 	sf::Texture* GetFromTextureMap(const String assetName, int frameIndex);
 	int GetNumFrames(const String assetName);
 
 	sf::Texture* GetStreamTextureFromList(const int index);
 	int GetNumLoadedStreamTextures() const;
+	int GetStreamingAssetCount() const;
 	void InstantiateAsTexture(String path, String assetName, bool isStreaming);
 
 private:
