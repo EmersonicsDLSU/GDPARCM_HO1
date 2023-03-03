@@ -4,6 +4,7 @@
 #include "Gameobjects/BackgroundObject/BGObject.h"
 #include "Gameobjects/Utilities/GameObjectManager.h"
 #include "Utilities/Manager/FontManager.h"
+#include "Utilities/Manager/SFXManager.h"
 #include "Utilities/Manager/TextureManager.h"
 #include "Utilities/Statistics/FPSCounter.h"
 
@@ -20,6 +21,7 @@ BaseRunner::BaseRunner() :
 	//load initial textures
 	TextureManager::GetInstance()->LoadFromAssetList();
 	FontManager::GetInstance()->LoadAll();
+	SFXManager::getInstance()->LoadAll();
 
 	//load objects
 	BGObject* bgObject = new BGObject("BGObject", "Desert");

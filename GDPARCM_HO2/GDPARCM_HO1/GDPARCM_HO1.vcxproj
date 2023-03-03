@@ -148,6 +148,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scripts\UI\Buttons\GenericInputController.cpp" />
+    <ClCompile Include="Scripts\Utilities\Manager\ApplicationManager.cpp" />
+    <ClCompile Include="Scripts\Scene\LoadingScene\LoadingScene.cpp" />
+    <ClCompile Include="Scripts\Scene\LoadingScene\LoadingScreen.cpp" />
+    <ClCompile Include="Scripts\Scene\AScene.cpp" />
+    <ClCompile Include="Scripts\Utilities\Manager\SceneManager.cpp" />
     <ClCompile Include="Scripts\Utilities\Manager\FontManager.cpp" />
     <ClCompile Include="Scripts\Gameobjects\BackgroundObject\BGMovement.cpp" />
     <ClCompile Include="Scripts\Components\Utilities\AComponent.cpp" />
@@ -173,8 +179,18 @@
     <ClCompile Include="Scripts\Components\Renderer\SpriteRenderer.cpp" />
     <ClCompile Include="Scripts\Components\Renderer\TextRenderer.cpp" />
     <ClCompile Include="Scripts\Gameobjects\UI\UIText.cpp" />
+    <ClCompile Include="Scripts\Utilities\Manager\SFXManager.cpp" />
+    <ClCompile Include="Scripts\UI\Buttons\UIButton.cpp" />
+    <ClCompile Include="Scripts\UI\Buttons\UIButtonInputController.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\UI\Buttons\GenericInputController.h" />
+    <ClInclude Include="Scripts\UI\Buttons\ButtonListener.h" />
+    <ClInclude Include="Scripts\Utilities\Manager\ApplicationManager.h" />
+    <ClInclude Include="Scripts\Scene\LoadingScene\LoadingScene.h" />
+    <ClInclude Include="Scripts\Scene\LoadingScene\LoadingScreen.h" />
+    <ClInclude Include="Scripts\Scene\AScene.h" />
+    <ClInclude Include="Scripts\Utilities\Manager\SceneManager.h" />
     <ClInclude Include="Scripts\Utilities\Manager\FontManager.h" />
     <ClInclude Include="Scripts\Gameobjects\BackgroundObject\BGMovement.h" />
     <ClInclude Include="Scripts\Components\Utilities\AComponent.h" />
@@ -200,6 +216,9 @@
     <ClInclude Include="Scripts\Components\Renderer\SpriteRenderer.h" />
     <ClInclude Include="Scripts\Components\Renderer\TextRenderer.h" />
     <ClInclude Include="Scripts\Gameobjects\UI\UIText.h" />
+    <ClInclude Include="Scripts\Utilities\Manager\SFXManager.h" />
+    <ClInclude Include="Scripts\UI\Buttons\UIButton.h" />
+    <ClInclude Include="Scripts\UI\Buttons\UIButtonInputController.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
