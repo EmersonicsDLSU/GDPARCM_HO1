@@ -1,1 +1,17 @@
 Media/Textures/Desert.png
+Media/Textures/simsIcon_0.png
+Media/Textures/simsIcon_1.png
+Media/Textures/simsIcon_2.png
+Media/Textures/simsIcon_3.png
+Media/Textures/simsIcon_4.png
+Media/Textures/simsIcon_5.png
+Media/Textures/simsIcon_6.png
+Media/Textures/simsIcon_7.png
+Media/Textures/simsIcon_8.png
+Media/Textures/simsIcon_9.png
+Media/Textures/simsIcon_10.png
+Media/Textures/simsIcon_11.png
+Media/Textures/simsIcon_12.png
+Media/Textures/simsIcon_13.png
+Media/Textures/simsIcon_14.png
+Media/Textures/simsIcon_15.png

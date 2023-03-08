@@ -7,6 +7,7 @@ public:
 	BGMovement(String name);
 	~BGMovement();
 	void Perform() override;
+	void Initialize() override;
 	void SetBGSpeed(float speed);
 	float GetBGSpeed();
 

@@ -57,14 +57,17 @@ void TextureDisplay::spawnObject()
 	guard.lock();
 	String objectName = "Icon_" + to_string(this->iconList.size());
 	IconObject* iconObj = new IconObject(objectName, this->iconList.size());
+	GameObjectManager::GetInstance()->AddObject(iconObj);
 	this->iconList.push_back(iconObj);
 
 	//set position
-	int IMG_WIDTH = 68; int IMG_HEIGHT = 68;
+	float initialWidth = 1600; float initialHeight = 800;
 
-	float x = this->columnGrid * IMG_WIDTH;
-	float y = this->rowGrid * IMG_HEIGHT;
-	iconObj->SetPosition(x, y);
+	iconObj->SetScale(initialWidth / iconObj->GetLocalBounds().width,
+		initialHeight / iconObj->GetLocalBounds().height);
+	//float x = this->columnGrid * IMG_WIDTH;
+	//float y = this->rowGrid * IMG_HEIGHT;
+	iconObj->SetPosition(100, 100);
 
 	//std::cout << "Set position: " << x << " " << y << std::endl;
 
@@ -74,7 +77,6 @@ void TextureDisplay::spawnObject()
 		this->columnGrid = 0;
 		this->rowGrid++;
 	}
-	GameObjectManager::GetInstance()->AddObject(iconObj);
 
 	guard.unlock();
 }

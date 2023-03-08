@@ -19,7 +19,7 @@ void StreamAssetLoader::OnStartTask()
 {
 	//std::cout << "Running stream asset loader " << std::endl;
 	// simulate loading of very large file
-	//IETThread::sleep(1000);
+	IETThread::sleep(1000);
 
 	std::vector<String> tokens = StringUtils::split(path, '/');
 	String assetName = StringUtils::split(tokens[tokens.size() - 1], '.')[0];
@@ -28,6 +28,7 @@ void StreamAssetLoader::OnStartTask()
 	//std::cout << "[TextureManager] Loaded streaming texture: " << assetName << std::endl;
 	if (execEvent != nullptr)
 		execEvent->onFinishedExecution();
+
 	// delete after being done
 	delete this;
 }

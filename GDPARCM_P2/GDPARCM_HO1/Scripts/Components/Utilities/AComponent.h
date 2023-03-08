@@ -20,6 +20,7 @@ public:
 
 	void SetDeltaTime(sf::Time deltaTime);
 	virtual void Perform(); //performs the associated action.
+	virtual void Initialize();
 
 protected:
 	AGameObject* owner;

@@ -131,6 +131,7 @@ void AGameObject::AttachComponent(AComponent* component)
 {
 	componentList.push_back(component);
 	component->AttachOwner(this);
+	component->Initialize();
 }
 
 void AGameObject::DetachComponent(AComponent* component)
@@ -202,6 +203,16 @@ std::vector<AComponent*> AGameObject::getComponentsRecursiveProper(AGameObject* 
 String AGameObject::GetName()
 {
 	return name;
+}
+
+sf::Sprite* AGameObject::GetSprite()
+{
+	return sprite;
+}
+
+void AGameObject::SetSprite(sf::Sprite* sprite)
+{
+	this->sprite = sprite;
 }
 
 sf::Transformable* AGameObject::GetTransformable()

@@ -1,5 +1,7 @@
 #include "AComponent.h"
 
+#include "Gameobjects/Utilities/AGameObject.h"
+
 AComponent::AComponent(String name, ComponentType type) {
 	this->name = name;
 	this->owner = nullptr;
@@ -36,8 +38,13 @@ void AComponent::Perform()
 	//std::cout << "Component's Name: " << GetName() << std::endl;
 }
 
+void AComponent::Initialize()
+{
+}
+
 void AComponent::AttachOwner(AGameObject* object) {
 	this->owner = object;
+	std::cout << "Attached owner: " << object->GetName() << std::endl;
 }
 
 void AComponent::DetachOwner() {

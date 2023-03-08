@@ -14,6 +14,7 @@ public:
 	void SetRenderStates(sf::RenderStates renderStates);
 
 	void Perform() override;
+	void Initialize() override;
 
 	static Renderer* Create(string name, string resourcesName, RendererType rendererType);
 	static Renderer* CreateSprite(string name, string resourceName);

@@ -26,7 +26,7 @@ private:
 	IconList iconList;
 
 	enum StreamingType { BATCH_LOAD = 0, SINGLE_STREAM = 1 };
-	const float STREAMING_LOAD_DELAY = 50;
+	const float STREAMING_LOAD_DELAY = 1000;
 	const StreamingType streamingType = SINGLE_STREAM;
 	float ticks = 0.0f;
 	bool startedStreaming = false;

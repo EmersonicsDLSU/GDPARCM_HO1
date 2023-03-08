@@ -27,6 +27,11 @@ void BGMovement::Perform()
 	}
 }
 
+void BGMovement::Initialize()
+{
+	AComponent::Initialize();
+}
+
 void BGMovement::SetBGSpeed(float speed)
 {
 	SPEED_MULTIPLIER = speed;

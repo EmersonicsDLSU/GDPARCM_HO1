@@ -38,6 +38,8 @@ private:
 		*/
 public:
 	String GetName();
+	sf::Sprite* GetSprite();
+	void SetSprite(sf::Sprite* sprite);
 	sf::Transformable* GetTransformable();
 	void SetEnabled(bool flag);
 	bool IsEnabled();

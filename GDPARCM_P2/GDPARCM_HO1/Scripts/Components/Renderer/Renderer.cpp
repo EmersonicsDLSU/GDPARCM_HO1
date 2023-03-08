@@ -34,6 +34,11 @@ void Renderer::Perform() {
 	this->targetWindow->draw(*this->drawable, this->renderStates);
 }
 
+void Renderer::Initialize()
+{
+	AComponent::Initialize();
+}
+
 Renderer* Renderer::Create(string name, string resourceName, RendererType rendererType) {
 	switch (rendererType) {
 	case RendererType::Sprite:
