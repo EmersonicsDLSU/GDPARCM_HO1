@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scripts\Gameobjects\ProgressBar\ProgressBar.cpp" />
     <ClCompile Include="Scripts\Gameobjects\AnimationObject\AnimObject.cpp" />
     <ClCompile Include="Scripts\Components\Animation\Animator.cpp" />
     <ClCompile Include="Scripts\UI\Buttons\GenericInputController.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="Scripts\UI\Buttons\UIButtonInputController.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\Gameobjects\ProgressBar\ProgressBar.h" />
     <ClInclude Include="Scripts\Gameobjects\AnimationObject\AnimObject.h" />
     <ClInclude Include="Scripts\Components\Animation\Animator.h" />
     <ClInclude Include="Scripts\UI\Buttons\GenericInputController.h" />

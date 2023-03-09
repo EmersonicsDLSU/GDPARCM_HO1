@@ -6,6 +6,7 @@
 #include "Components/Renderer/TextureDisplay.h"
 #include "Gameobjects/AnimationObject/AnimObject.h"
 #include "Gameobjects/BackgroundObject/BGObject.h"
+#include "Gameobjects/ProgressBar/ProgressBar.h"
 #include "Gameobjects/Utilities/GameObjectManager.h"
 #include "Utilities/Statistics/FPSCounter.h"
 
@@ -37,10 +38,11 @@ void LoadingScene::onLoadObjects()
 	"simsIcon_8", "simsIcon_9", "simsIcon_10", "simsIcon_11", "simsIcon_12", "simsIcon_13",
 	"simsIcon_14", "simsIcon_15"});
 	GameObjectManager::GetInstance()->AddObject(simsIcon);
-	simsIcon->SetPosition(BaseRunner::WINDOW_WIDTH / 2 - 55,
-		BaseRunner::WINDOW_HEIGHT - 200);
 	simsIcon->SetScale(56 / simsIcon->GetLocalBounds().width,
 		118 / simsIcon->GetLocalBounds().height);
+
+	ProgressBar* progressBar = new ProgressBar("Progress Bar", "progressBar_unfilled", "progressBar_filler", simsIcon);
+	GameObjectManager::GetInstance()->AddObject(progressBar);
 
 	//TextureDisplay* display = new TextureDisplay();
 	//GameObjectManager::GetInstance()->AddObject(display);

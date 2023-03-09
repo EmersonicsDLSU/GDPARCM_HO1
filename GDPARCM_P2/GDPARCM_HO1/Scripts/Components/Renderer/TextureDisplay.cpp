@@ -35,13 +35,7 @@ void TextureDisplay::Update(sf::Time deltaTime)
 	{
 		ticks = 0.0f;
 		TextureManager::GetInstance()->LoadSingleStreamAsset(numDisplayed, this);
-		if (numDisplayed < TextureManager::GetInstance()->GetStreamingAssetCount())
-		{
-			std::cout << "Progress: " << 
-				(float)numDisplayed / (float)TextureManager::GetInstance()->GetStreamingAssetCount()
-			<< std::endl;
-			numDisplayed++;
-		}
+		TextureManager::GetInstance()->SetAssetLoadedCount(++numDisplayed);
 	}
 }
 

@@ -56,7 +56,12 @@ void AGameObject::Draw(sf::RenderWindow* targetWindow, sf::RenderStates renderSt
 
 void AGameObject::SetPosition(float x, float y)
 {
-	_transformable.setPosition(x, y);
+	if (sprite != nullptr && sprite->getTexture() != nullptr)
+	{
+		_transformable.setPosition((x - GetLocalBounds().width / 2), (y - GetLocalBounds().height / 2));
+	}
+	else
+		_transformable.setPosition(x, y);
 }
 
 void AGameObject::SetScale(float x, float y)
@@ -66,7 +71,10 @@ void AGameObject::SetScale(float x, float y)
 
 sf::FloatRect AGameObject::GetLocalBounds()
 {
-	return this->sprite->getLocalBounds();
+	sf::FloatRect newLocalBounds = sprite->getLocalBounds();
+	newLocalBounds.width *= GetScale().x;
+	newLocalBounds.height *= GetScale().y;
+	return newLocalBounds;
 }
 
 sf::FloatRect AGameObject::getGlobalBounds()

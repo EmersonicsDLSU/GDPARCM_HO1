@@ -15,3 +15,6 @@ Media/Textures/simsIcon_12.png
 Media/Textures/simsIcon_13.png
 Media/Textures/simsIcon_14.png
 Media/Textures/simsIcon_15.png
+Media/Textures/progressBar_filled.png
+Media/Textures/progressBar_filler.png
+Media/Textures/progressBar_unfilled.png

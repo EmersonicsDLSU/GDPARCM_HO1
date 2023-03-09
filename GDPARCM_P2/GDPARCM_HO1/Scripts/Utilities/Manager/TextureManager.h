@@ -24,6 +24,8 @@ public:
 	sf::Texture* GetStreamTextureFromList(const int index);
 	int GetNumLoadedStreamTextures() const;
 	int GetStreamingAssetCount() const;
+	int GetAssetLoadedCount() const;
+	void SetAssetLoadedCount(int count);
 	void InstantiateAsTexture(String path, String assetName, bool isStreaming);
 
 private:
@@ -37,7 +39,7 @@ private:
 	TextureList streamTextureList;
 
 	const std::string STREAMING_PATH = "Media/Streaming/";
-	int streamingAssetCount = 0;
+	int currentAssetsLoaded = 0, streamingAssetCount = 0;
 
 	void CountStreamingAssets();
 

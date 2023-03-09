@@ -112,6 +112,16 @@ int TextureManager::GetStreamingAssetCount() const
 	return streamingAssetCount;
 }
 
+int TextureManager::GetAssetLoadedCount() const
+{
+	return this->currentAssetsLoaded;
+}
+
+void TextureManager::SetAssetLoadedCount(int count)
+{
+	this->currentAssetsLoaded = count;
+}
+
 void TextureManager::CountStreamingAssets()
 {
 	streamingAssetCount = 0;
