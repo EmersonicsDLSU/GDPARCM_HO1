@@ -55,13 +55,13 @@ void TextureDisplay::spawnObject()
 	this->iconList.push_back(iconObj);
 
 	//set position
-	float initialWidth = 1600; float initialHeight = 800;
+	float initialWidth = 1000; float initialHeight = 500;
 
 	iconObj->SetScale(initialWidth / iconObj->GetLocalBounds().width,
 		initialHeight / iconObj->GetLocalBounds().height);
 	//float x = this->columnGrid * IMG_WIDTH;
 	//float y = this->rowGrid * IMG_HEIGHT;
-	iconObj->SetPosition(100, 100);
+	iconObj->SetPosition(BaseRunner::WINDOW_WIDTH / 2, BaseRunner::WINDOW_HEIGHT / 2);
 
 	//std::cout << "Set position: " << x << " " << y << std::endl;
 

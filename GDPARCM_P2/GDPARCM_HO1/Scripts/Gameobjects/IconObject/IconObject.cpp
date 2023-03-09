@@ -18,6 +18,7 @@ void IconObject::Initialize()
 	this->sprite->setTexture(*texture);
 
 	
+
 	Renderer* renderer = new Renderer(name + std::to_string(textureIndex));
 	renderer->AssignDrawable(sprite);
 	AttachComponent(renderer);

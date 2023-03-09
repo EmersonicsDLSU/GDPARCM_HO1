@@ -9,7 +9,8 @@ public:
 	void Update(sf::Time deltaTime) override;
 private:
 	float currentProgress = 0;
+	float maxFillerWidth;
 	String pbName, fillerName;
-	AGameObject* icon;
+	AGameObject *icon, *fillerObj;
 };
 

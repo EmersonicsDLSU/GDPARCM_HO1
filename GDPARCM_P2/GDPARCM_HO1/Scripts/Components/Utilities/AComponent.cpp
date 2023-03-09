@@ -44,7 +44,6 @@ void AComponent::Initialize()
 
 void AComponent::AttachOwner(AGameObject* object) {
 	this->owner = object;
-	std::cout << "Attached owner: " << object->GetName() << std::endl;
 }
 
 void AComponent::DetachOwner() {

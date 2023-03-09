@@ -25,9 +25,9 @@ void ProgressBar::Initialize()
 	AttachComponent(renderer);
 
 	// create filler obj
-	AGameObject* fillerObj = new AGameObject("Filler");
+	fillerObj = new AGameObject("Filler");
 	fillerObj->SetSprite(new sf::Sprite());
-	sf::Texture* filerTexture = TextureManager::GetInstance()->GetFromTextureMap(fillerName, 0);
+	sf::Texture *filerTexture = TextureManager::GetInstance()->GetFromTextureMap(fillerName, 0);
 	fillerObj->GetSprite()->setTexture(*filerTexture);
 	Renderer* fillerRenderer = new Renderer("FillerRenderer");
 	fillerRenderer->AssignDrawable(fillerObj->GetSprite());
@@ -38,11 +38,12 @@ void ProgressBar::Initialize()
 		1);
 	SetPosition(BaseRunner::WINDOW_WIDTH / 2,
 		BaseRunner::WINDOW_HEIGHT - 100);
-	fillerObj->SetScale((BaseRunner::WINDOW_WIDTH - 200) / GetLocalBounds().width,
+	fillerObj->SetScale((BaseRunner::WINDOW_WIDTH - 200) / fillerObj->GetLocalBounds().width,
 		1);
 	fillerObj->SetPosition(BaseRunner::WINDOW_WIDTH / 2,
 		BaseRunner::WINDOW_HEIGHT - 100);
 
+	maxFillerWidth = fillerObj->GetLocalBounds().width;
 }
 
 void ProgressBar::Update(sf::Time deltaTime)
@@ -52,10 +53,15 @@ void ProgressBar::Update(sf::Time deltaTime)
 	if (TextureManager::GetInstance()->GetAssetLoadedCount() < TextureManager::GetInstance()->GetStreamingAssetCount())
 	{
 		currentProgress = (float)TextureManager::GetInstance()->GetAssetLoadedCount() / (float)TextureManager::GetInstance()->GetStreamingAssetCount();
-		std::cout << "Progress: " << icon->GetPosition().x << ":" << icon->GetPosition().y << std::endl;
+		
+		double progressPosition = (double)maxFillerWidth * (double)currentProgress * 0.3109322848405417;
+		std::cout << "Progress: " << currentProgress << std::endl;
+		std::cout << "ProgressBar: " << progressPosition << std::endl;
+		sf::IntRect cropRect(0, 0, progressPosition, fillerObj->GetLocalBounds().height); // Crop rectangle based on percentage
+		fillerObj->GetSprite()->setTextureRect(cropRect); // Apply crop rectangle to sprite
+		std::cout << "ProgressWidth: " << fillerObj->GetLocalBounds().width << std::endl;
 
-		icon->SetPosition(BaseRunner::WINDOW_WIDTH / 2,
-			BaseRunner::WINDOW_HEIGHT - 200);
+		icon->SetPosition(fillerObj->GetLocalBounds().width + 100,BaseRunner::WINDOW_HEIGHT - 200);
 	}
 	
 }

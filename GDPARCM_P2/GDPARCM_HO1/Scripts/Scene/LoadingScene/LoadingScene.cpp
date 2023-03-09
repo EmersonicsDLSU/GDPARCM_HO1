@@ -44,8 +44,8 @@ void LoadingScene::onLoadObjects()
 	ProgressBar* progressBar = new ProgressBar("Progress Bar", "progressBar_unfilled", "progressBar_filler", simsIcon);
 	GameObjectManager::GetInstance()->AddObject(progressBar);
 
-	//TextureDisplay* display = new TextureDisplay();
-	//GameObjectManager::GetInstance()->AddObject(display);
+	TextureDisplay* display = new TextureDisplay();
+	GameObjectManager::GetInstance()->AddObject(display);
 
 	FPSCounter* fpsCounter = new FPSCounter();
 	GameObjectManager::GetInstance()->AddObject(fpsCounter);
