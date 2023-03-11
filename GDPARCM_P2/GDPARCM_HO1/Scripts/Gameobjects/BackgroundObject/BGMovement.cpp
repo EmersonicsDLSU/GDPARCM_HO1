@@ -12,8 +12,6 @@ BGMovement::~BGMovement()
 
 void BGMovement::Perform()
 {
-	AComponent::Perform();
-
 	sf::Vector2f offset(0.0f, 0.0f);
 	offset.y += SPEED_MULTIPLIER;
 
@@ -25,6 +23,8 @@ void BGMovement::Perform()
 		// reset position
 		bgTransform->setPosition(0, -BaseRunner::WINDOW_HEIGHT * 7.0f);
 	}
+
+	AComponent::Perform();
 }
 
 void BGMovement::Initialize()

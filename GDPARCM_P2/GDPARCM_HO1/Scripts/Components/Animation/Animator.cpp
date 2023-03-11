@@ -19,8 +19,6 @@ Animator::~Animator()
 
 void Animator::Perform()
 {
-	AComponent::Perform();
-
 	ticks += deltaTime.asSeconds();
 
 	if (ticks >= _animInterval)
@@ -29,6 +27,8 @@ void Animator::Perform()
 		GetOwner()->GetSprite()->setTexture(*(this->animations[currentAnim]));
 		ticks = 0;
 	}
+
+	AComponent::Perform();
 }
 
 void Animator::Initialize()

@@ -37,8 +37,6 @@ void FPSCounter::Update(sf::Time deltaTime)
 
 void FPSCounter::updateFPS(sf::Time elapsedTime)
 {
-	AGameObject::Update(elapsedTime);
-
 	float fps = floor(1.0f / elapsedTime.asSeconds());
 	fps = floor(1.0f / elapsedTime.asSeconds());
 	char str[40];

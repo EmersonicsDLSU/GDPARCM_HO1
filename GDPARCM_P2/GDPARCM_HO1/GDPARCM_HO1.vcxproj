@@ -185,6 +185,7 @@
     <ClCompile Include="Scripts\Utilities\Manager\SFXManager.cpp" />
     <ClCompile Include="Scripts\UI\Buttons\UIButton.cpp" />
     <ClCompile Include="Scripts\UI\Buttons\UIButtonInputController.cpp" />
+    <ClCompile Include="Scripts\Gameobjects\ToolTip\ToolTip.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Gameobjects\ProgressBar\ProgressBar.h" />
@@ -225,6 +226,7 @@
     <ClInclude Include="Scripts\Utilities\Manager\SFXManager.h" />
     <ClInclude Include="Scripts\UI\Buttons\UIButton.h" />
     <ClInclude Include="Scripts\UI\Buttons\UIButtonInputController.h" />
+    <ClInclude Include="Scripts\Gameobjects\ToolTip\ToolTip.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

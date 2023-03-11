@@ -55,11 +55,11 @@ void ProgressBar::Update(sf::Time deltaTime)
 		currentProgress = (float)TextureManager::GetInstance()->GetAssetLoadedCount() / (float)TextureManager::GetInstance()->GetStreamingAssetCount();
 		
 		double progressPosition = (double)maxFillerWidth * (double)currentProgress * 0.3109322848405417;
-		std::cout << "Progress: " << currentProgress << std::endl;
-		std::cout << "ProgressBar: " << progressPosition << std::endl;
+		//std::cout << "Progress: " << currentProgress << std::endl;
+		//std::cout << "ProgressBar: " << progressPosition << std::endl;
 		sf::IntRect cropRect(0, 0, progressPosition, fillerObj->GetLocalBounds().height); // Crop rectangle based on percentage
 		fillerObj->GetSprite()->setTextureRect(cropRect); // Apply crop rectangle to sprite
-		std::cout << "ProgressWidth: " << fillerObj->GetLocalBounds().width << std::endl;
+		//std::cout << "ProgressWidth: " << fillerObj->GetLocalBounds().width << std::endl;
 
 		icon->SetPosition(fillerObj->GetLocalBounds().width + 100,BaseRunner::WINDOW_HEIGHT - 200);
 	}
