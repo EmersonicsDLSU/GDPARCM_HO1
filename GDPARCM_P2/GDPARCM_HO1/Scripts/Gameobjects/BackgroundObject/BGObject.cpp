@@ -1,6 +1,7 @@
 #include "BGObject.h"
 #include <string>
 #include "BGMovement.h"
+#include "BGMPlaylist.h"
 #include "BaseRunner/BaseRunner.h"
 #include "Components/Renderer/Renderer.h"
 #include "Utilities/Manager/TextureManager.h"
@@ -24,8 +25,11 @@ void BGObject::Initialize()
 	sprite->setTextureRect(sf::IntRect(0, 0, BaseRunner::WINDOW_WIDTH, BaseRunner::WINDOW_HEIGHT * 10));
 	GetTransformable()->setPosition(0, BaseRunner::WINDOW_HEIGHT * 7);
 
-	BGMovement* movement = new BGMovement("BG_Movement");
-	AttachComponent(movement);
+	//BGMovement* movement = new BGMovement("BG_Movement");
+	//AttachComponent(movement);
+
+	BGMPlaylist* playlist = new BGMPlaylist("BGM_Playlist");
+	AttachComponent(playlist);
 
 	Renderer* renderer = new Renderer("BG");
 	renderer->AssignDrawable(sprite);

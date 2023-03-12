@@ -9,6 +9,7 @@
 #include "Gameobjects/ProgressBar/ProgressBar.h"
 #include "Gameobjects/ToolTip/ToolTip.h"
 #include "Gameobjects/Utilities/GameObjectManager.h"
+#include "Utilities/Manager/SFXManager.h"
 #include "Utilities/Statistics/FPSCounter.h"
 
 LoadingScene::LoadingScene() : AScene("LoadScene")

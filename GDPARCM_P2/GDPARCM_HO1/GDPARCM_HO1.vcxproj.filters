@@ -129,6 +129,9 @@
     <ClCompile Include="Scripts\Gameobjects\ToolTip\ToolTip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Gameobjects\BackgroundObject\BGMPlaylist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Gameobjects\Utilities\AGameObject.h">
@@ -246,6 +249,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Gameobjects\ToolTip\ToolTip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Gameobjects\BackgroundObject\BGMPlaylist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

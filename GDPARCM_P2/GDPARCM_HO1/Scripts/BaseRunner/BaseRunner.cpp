@@ -14,7 +14,7 @@
 const sf::Time BaseRunner::TIME_PER_FRAME = sf::seconds(1.f / 60.f);
 
 BaseRunner::BaseRunner() :
-	window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "HO: Entity Component") {
+	window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Sims 4 Loading Scene") {
 
 	window.setFramerateLimit(60);
 

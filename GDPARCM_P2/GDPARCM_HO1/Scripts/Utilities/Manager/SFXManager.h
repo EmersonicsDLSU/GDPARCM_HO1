@@ -3,6 +3,16 @@
 #include <SFML/Audio.hpp>
 #include <unordered_map>
 
+enum SFX_Types
+{
+	BGM = 0,
+};
+struct SFX
+{
+	sf::Sound* sound;
+	std::string name;
+};
+
 class SFXManager
 {
 public:
@@ -14,6 +24,7 @@ public:
 	void SoundVolume(std::string key, int vol);
 	void StopSound(std::string);
 	void LoopSound(std::string key, bool loop);
+	std::vector<SFX*> GetBGM_Playlist();
 
 
 private:
@@ -23,6 +34,7 @@ private:
 	~SFXManager();
 	static SFXManager* sharedInstance;
 
-	void LoadAudio(std::string, std::string);
+	void LoadAudio(std::string, std::string, SFX_Types sfxType);
 	std::unordered_map<std::string, sf::Sound*> soundMap;
+	std::vector<SFX*> soundBGM;
 };

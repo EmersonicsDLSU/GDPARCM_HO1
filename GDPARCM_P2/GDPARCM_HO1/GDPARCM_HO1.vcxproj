@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scripts\Gameobjects\BackgroundObject\BGMPlaylist.cpp" />
     <ClCompile Include="Scripts\Gameobjects\ProgressBar\ProgressBar.cpp" />
     <ClCompile Include="Scripts\Gameobjects\AnimationObject\AnimObject.cpp" />
     <ClCompile Include="Scripts\Components\Animation\Animator.cpp" />
@@ -188,6 +189,7 @@
     <ClCompile Include="Scripts\Gameobjects\ToolTip\ToolTip.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\Gameobjects\BackgroundObject\BGMPlaylist.h" />
     <ClInclude Include="Scripts\Gameobjects\ProgressBar\ProgressBar.h" />
     <ClInclude Include="Scripts\Gameobjects\AnimationObject\AnimObject.h" />
     <ClInclude Include="Scripts\Components\Animation\Animator.h" />
