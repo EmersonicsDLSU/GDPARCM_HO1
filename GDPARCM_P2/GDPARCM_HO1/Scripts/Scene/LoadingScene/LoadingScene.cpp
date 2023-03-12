@@ -31,6 +31,40 @@ void LoadingScene::onLoadObjects()
 {
 	std::cout << "Main menu scene initialized! \n";
 
+	ToolTip* toolTip = new ToolTip("ToolTip",
+		{ "When running a business, make sure to hire employees and train them well to increase customer satisfaction and profits.",
+			"As a detective, make sure to take notes and gather evidence carefully to solve cases faster.",
+			"When working as a doctor, try to specialize in a certain area to improve your skills and get promoted faster.",
+			"Explore the new world of Magnolia Promenade to discover new shops and items for your Sims.",
+			"Join and create clubs to meet new Sims and participate in group activities.",
+			"Use the DJ booth to become a DJ and throw your own parties.",
+			"Use the new skills, such as Dancing and DJ Mixing, to improve your Sim's abilities and gain more social interactions.",
+			"Explore the new world of Windenburg to discover new venues and hidden areas.",
+			"Living in an apartment can be challenging, so make sure to pay attention to the neighbors' complaints and maintain a good relationship with them.",
+			"Participate in festivals to gain new skills, meet new Sims, and get exclusive items.",
+			"Use the new interactions, such as Karaoke and Basketball, to improve your Sim's mood and social interactions.",
+			"Explore the new world of San Myshuno to discover new food, music, and cultures.",
+			"Owning a pet requires a lot of attention and care, so make sure to feed them, play with them, and take them for walks regularly.",
+			"Open a veterinary clinic to treat other Sims' pets and gain profits.",
+			"Use the new interactions, such as Pet Training and Pet Grooming, to improve your Sim's relationship with their pets.",
+			"Explore the new world of Brindleton Bay to discover new pet-related activities and items.",
+			"Weather can affect your Sim's mood and activities, so make sure to dress accordingly and prepare for storms or heatwaves.",
+			"Participate in holidays to gain new items, decorations, and activities.",
+			"Gardening is a great way to earn money and decorate your home with fresh produce and flowers.",
+			"Use the new interactions, such as Ice Skating and Water Balloon fights, to have fun with your Sims during different seasons.",
+			"Gaining fame requires a lot of hard work and networking, so make sure to attend events and promote your Sim's skills.",
+			"Use the new interactions, such as Acting and Media Production, to improve your Sim's fame and earn money.",
+			"Explore the new world of Del Sol Valley to discover new celebrity hotspots and luxury items.",
+			"Be careful of the paparazzi and negative publicity, as it can harm your Sim's reputation.",
+			"Living on an island requires a lot of water activities and island traditions, so make sure to participate in them regularly."
+		}
+	);
+	toolTip->Initialize_Images({ "toolTip_0", "toolTip_1", "toolTip_2", "toolTip_3", "toolTip_4", "toolTip_5",
+	"toolTip_6", "toolTip_7", "toolTip_8", "toolTip_9", "toolTip_10", "toolTip_11",
+	"toolTip_12", "toolTip_13", "toolTip_14", "toolTip_15", "toolTip_16", "toolTip_17",
+	"toolTip_18", "toolTip_19", "toolTip_20", "toolTip_21", "toolTip_22", "toolTip_23", "toolTip_24" });
+	GameObjectManager::GetInstance()->AddObject(toolTip);
+
 	//load objects
 	BGObject* bgObject = new BGObject("BGObject", "Desert");
 	GameObjectManager::GetInstance()->AddObject(bgObject);
@@ -51,15 +85,7 @@ void LoadingScene::onLoadObjects()
 
 	FPSCounter* fpsCounter = new FPSCounter();
 	GameObjectManager::GetInstance()->AddObject(fpsCounter);
-
-	ToolTip* toolTip = new ToolTip("ToolTip", 
-		{"When running a business, make sure to hire employees and train them well to increase customer satisfaction and profits.",
-			"As a detective, make sure to take notes and gather evidence carefully to solve cases faster.",
-			"When working as a doctor, try to specialize in a certain area to improve your skills and get promoted faster.",
-			"Explore the new world of Magnolia Promenade to discover new shops and items for your Sims."
-		}
-	);
-	GameObjectManager::GetInstance()->AddObject(toolTip);
+	
 
 	/*
 	LoadingScreen *loading_screen = new LoadingScreen("LoadingScreen");
