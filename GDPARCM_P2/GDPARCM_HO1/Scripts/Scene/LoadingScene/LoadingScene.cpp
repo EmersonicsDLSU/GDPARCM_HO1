@@ -31,6 +31,10 @@ void LoadingScene::onLoadObjects()
 {
 	std::cout << "Main menu scene initialized! \n";
 
+	//load objects
+	BGObject* bgObject = new BGObject("BGObject", "Blue_BG");
+	GameObjectManager::GetInstance()->AddObject(bgObject);
+
 	ToolTip* toolTip = new ToolTip("ToolTip",
 		{ "When running a business, make sure to hire employees and train them well to increase customer satisfaction and profits.",
 			"As a detective, make sure to take notes and gather evidence carefully to solve cases faster.",
@@ -65,15 +69,12 @@ void LoadingScene::onLoadObjects()
 	"toolTip_18", "toolTip_19", "toolTip_20", "toolTip_21", "toolTip_22", "toolTip_23", "toolTip_24" });
 	GameObjectManager::GetInstance()->AddObject(toolTip);
 
-	//load objects
-	BGObject* bgObject = new BGObject("BGObject", "Desert");
-	GameObjectManager::GetInstance()->AddObject(bgObject);
-
 	AnimObject* simsIcon = new AnimObject("simsIcon", {"simsIcon_0","simsIcon_1",
 	"simsIcon_2", "simsIcon_3", "simsIcon_4", "simsIcon_5", "simsIcon_6", "simsIcon_7",
 	"simsIcon_8", "simsIcon_9", "simsIcon_10", "simsIcon_11", "simsIcon_12", "simsIcon_13",
 	"simsIcon_14", "simsIcon_15"});
 	GameObjectManager::GetInstance()->AddObject(simsIcon);
+	simsIcon->SetInterval(0.1f);
 	simsIcon->SetScale(56 / simsIcon->GetLocalBounds().width,
 		118 / simsIcon->GetLocalBounds().height);
 

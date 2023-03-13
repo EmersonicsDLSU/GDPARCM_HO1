@@ -16,8 +16,10 @@ UIButton::~UIButton()
 	AGameObject::~AGameObject();
 }
 
-void UIButton::initialize()
+void UIButton::Initialize()
 {
+	AGameObject::Initialize();
+
 	sprite = new sf::Sprite();
 	sprite->setTexture(*this->normalTexture);
 	sf::Vector2u textureSize = sprite->getTexture()->getSize();
@@ -30,6 +32,7 @@ void UIButton::initialize()
 
 void UIButton::SetButtonListener(ButtonListener* listener)
 {
+	std::cout << "Assign Button Listener " << "\n";
 	//assign input controller
 	this->listener = listener;
 	UIButtonInputController* inputController = new UIButtonInputController("UI_InputController", this->listener);

@@ -8,7 +8,7 @@ class UIButton : public AGameObject
 public:
 	UIButton(String name, sf::Texture* normalTexture, sf::Texture* pressedTexture);
 	~UIButton();
-	void initialize();
+	void Initialize() override;
 	void changeButtonToNormal();
 	void changeButtonToPressed();
 	sf::FloatRect getLocalBounds();

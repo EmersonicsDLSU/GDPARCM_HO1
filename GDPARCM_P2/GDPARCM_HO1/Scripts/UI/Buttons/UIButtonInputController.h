@@ -10,7 +10,7 @@ public:
 	UIButtonInputController(string name, ButtonListener* buttonListener);
 	~UIButtonInputController();
 
-	void perform();
+	void Perform() override;
 
 private:
 	ButtonListener* buttonListener;

@@ -1,5 +1,6 @@
 #include "AGameObject.h"
 #include "Components/Renderer/Renderer.h"
+#include "UI/Buttons/GenericInputController.h"
 
 
 AGameObject::AGameObject(String name)
@@ -22,10 +23,29 @@ void AGameObject::Initialize()
 
 void AGameObject::ProcessInput(sf::Event event)
 {
+	// check if this gameobject is enabled
+	if (!IsEnabled()) {
+		return;
+	}
+
+	std::vector<AComponent*> componentList = this->GetComponentsOfType(AComponent::ComponentType::Input);
+	for (int j = 0; j < componentList.size(); j++) {
+		GenericInputController* inputController = (GenericInputController*)componentList[j];
+		inputController->assignEvent(event);
+		inputController->Perform();
+	}
+	for (int i = 0; i < this->childList.size(); i++) {
+		this->childList[i]->ProcessInput(event);
+	}
 }
 
 void AGameObject::Update(sf::Time deltaTime)
 {
+	// check if this gameobject is enabled
+	if (!IsEnabled()) {
+		return;
+	}
+
 	// updates all the components attached to this gameobject
 	std::vector<AComponent*> componentList = this->GetComponentsOfType(AComponent::ComponentType::Script);
 	for (int j = 0; j < componentList.size(); j++) {
@@ -51,6 +71,9 @@ void AGameObject::Draw(sf::RenderWindow* targetWindow, sf::RenderStates renderSt
 		renderer->AssignTargetWindow(targetWindow);
 		renderer->SetRenderStates(renderStates);
 		renderer->Perform();
+	}
+	for (int i = 0; i < this->childList.size(); i++) {
+		this->childList[i]->Draw(targetWindow, renderStates);
 	}
 }
 

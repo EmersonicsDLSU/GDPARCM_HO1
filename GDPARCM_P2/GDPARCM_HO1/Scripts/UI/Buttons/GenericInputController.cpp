@@ -15,7 +15,7 @@ void GenericInputController::assignEvent(sf::Event event)
 	this->event = event;
 }
 
-void GenericInputController::perform()
+void GenericInputController::Perform()
 {
-
+	AComponent::Perform();
 }

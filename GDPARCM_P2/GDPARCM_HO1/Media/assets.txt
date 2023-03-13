@@ -1,4 +1,11 @@
 Media/Textures/Desert.png
+Media/Textures/Blue_BG.png
+Media/Textures/btn_normal.png
+Media/Textures/btn_pressed.png
+Media/Textures/pause_button.png
+Media/Textures/play_button.png
+Media/Textures/back_button.png
+Media/Textures/forward_button.png
 Media/Textures/simsIcon_0.png
 Media/Textures/simsIcon_1.png
 Media/Textures/simsIcon_2.png

@@ -8,6 +8,7 @@ public:
 	~Animator();
 	void Perform() override;
 	void Initialize() override;
+	void SetInterval(float interval);
 private:
 	std::vector <sf::Texture*> animations;
 	int currentAnim = 0;

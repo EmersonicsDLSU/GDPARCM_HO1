@@ -35,6 +35,12 @@ void UIText::SetText(String text)
 	this->text->setOrigin(bounds.width / 2, bounds.height / 2);
 }
 
+void UIText::SetColor(sf::Color color, sf::Color outline)
+{
+	text->setFillColor(color);
+	text->setOutlineColor(outline);
+}
+
 String UIText::GetText()
 {
 	return text->getString();

@@ -15,12 +15,12 @@ SFXManager* SFXManager::getInstance() {
 
 void SFXManager::LoadAll()
 {
-	LoadAudio("BaseGame", "../GDPARCM_HO1/Media/Sounds/BaseGame.wav", SFX_Types::BGM);
-	LoadAudio("CottageLiving", "../GDPARCM_HO1/Media/Sounds/CottageLiving.wav", SFX_Types::BGM);
-	LoadAudio("EcoLifestyle", "../GDPARCM_HO1/Media/Sounds/EcoLifestyle.wav", SFX_Types::BGM);
-	LoadAudio("IslandLiving", "../GDPARCM_HO1/Media/Sounds/IslandLiving.wav", SFX_Types::BGM);
-	LoadAudio("Seasons", "../GDPARCM_HO1/Media/Sounds/Seasons.wav", SFX_Types::BGM);
-	LoadAudio("SnowyEscape", "../GDPARCM_HO1/Media/Sounds/SnowyEscape.wav", SFX_Types::BGM);
+	LoadAudio("BaseGame", "../GDPARCM_HO1/Media/Sounds/BaseGame.wav", SFX_Types::BGM, "Sims 4: Base Game");
+	LoadAudio("CottageLiving", "../GDPARCM_HO1/Media/Sounds/CottageLiving.wav", SFX_Types::BGM, "Sims 4: Cottage Living");
+	LoadAudio("EcoLifestyle", "../GDPARCM_HO1/Media/Sounds/EcoLifestyle.wav", SFX_Types::BGM, "Sims 4: Eco Lifestyle");
+	LoadAudio("IslandLiving", "../GDPARCM_HO1/Media/Sounds/IslandLiving.wav", SFX_Types::BGM, "Sims 4: Island Living");
+	LoadAudio("Seasons", "../GDPARCM_HO1/Media/Sounds/Seasons.wav", SFX_Types::BGM, "Sims 4: Seasons");
+	LoadAudio("SnowyEscape", "../GDPARCM_HO1/Media/Sounds/SnowyEscape.wav", SFX_Types::BGM, "Sims 4: Snowy Escape");
 }
 
 
@@ -29,7 +29,7 @@ SFXManager::~SFXManager()
 
 }
 
-void SFXManager::LoadAudio(std::string key, std::string path, SFX_Types sfxType) {
+void SFXManager::LoadAudio(std::string key, std::string path, SFX_Types sfxType, std::string name) {
 	sf::SoundBuffer* sound = new sf::SoundBuffer();
 	sf::Sound* audio = new sf::Sound();
 	sound->loadFromFile(path);
@@ -38,7 +38,8 @@ void SFXManager::LoadAudio(std::string key, std::string path, SFX_Types sfxType)
 
 	SFX* sfx = new SFX();
 	sfx->sound = audio;
-	sfx->name = key;
+	sfx->key = key;
+	sfx->name = name;
 
 	if (sfxType == SFX_Types::BGM)
 		soundBGM.push_back(sfx);

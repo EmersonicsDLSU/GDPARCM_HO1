@@ -32,6 +32,9 @@ void ToolTip::Initialize()
 	sprite->setTexture(*correspondingImages[0]);
 
 	//set position
+
+	SetScale(1400 / GetLocalBounds().width,
+		780 / GetLocalBounds().height);
 	SetPosition(BaseRunner::WINDOW_WIDTH / 2, BaseRunner::WINDOW_HEIGHT / 2);
 
 	Renderer* renderer = new Renderer("ToolTip");

@@ -8,7 +8,7 @@ public:
 	GenericInputController(string name);
 	~GenericInputController();
 
-	void perform();
+	void Perform() override;
 	void assignEvent(sf::Event event);
 
 protected:

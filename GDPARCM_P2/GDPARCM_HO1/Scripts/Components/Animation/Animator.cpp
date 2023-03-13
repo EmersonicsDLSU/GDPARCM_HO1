@@ -36,3 +36,8 @@ void Animator::Initialize()
 	AComponent::Initialize();
 	
 }
+
+void Animator::SetInterval(float interval)
+{
+	_animInterval = interval;
+}

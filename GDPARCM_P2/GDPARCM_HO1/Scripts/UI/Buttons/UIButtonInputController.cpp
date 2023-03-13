@@ -11,8 +11,8 @@ UIButtonInputController::~UIButtonInputController()
 	AComponent::~AComponent();
 }
 
-void UIButtonInputController::perform() {
-
+void UIButtonInputController::Perform() {
+	GenericInputController::Perform();
 	UIButton* button = (UIButton*)GetOwner();
 	if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left && this->pressed) {
 		this->pressed = false;

@@ -10,6 +10,7 @@ enum SFX_Types
 struct SFX
 {
 	sf::Sound* sound;
+	std::string key;
 	std::string name;
 };
 
@@ -34,7 +35,7 @@ private:
 	~SFXManager();
 	static SFXManager* sharedInstance;
 
-	void LoadAudio(std::string, std::string, SFX_Types sfxType);
+	void LoadAudio(std::string, std::string, SFX_Types sfxType, std::string name = "\0");
 	std::unordered_map<std::string, sf::Sound*> soundMap;
 	std::vector<SFX*> soundBGM;
 };

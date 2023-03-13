@@ -13,8 +13,8 @@ void AnimObject::Initialize()
 
 	std::cout << "Declared as " << this->GetName() << "\n";
 	
-	Animator* movement = new Animator(name, animations);
-	AttachComponent(movement);
+	anim = new Animator(name, animations);
+	AttachComponent(anim);
 
 	// assign texture
 	this->sprite = new sf::Sprite();
@@ -25,4 +25,9 @@ void AnimObject::Initialize()
 	renderer->AssignDrawable(sprite);
 	AttachComponent(renderer);
 
+}
+
+void AnimObject::SetInterval(float interval)
+{
+	anim->SetInterval(interval);
 }
