@@ -4,7 +4,7 @@
 #include "Scene/AScene.h"
 
 String SceneManager::LOADING_SCENE = "LoadScene";
-String SceneManager::GAME_SCENE = "GameScene";
+String SceneManager::MAINMENU_SCENE = "MainMenuScene";
 
 SceneManager* SceneManager::sharedInstance = nullptr;
 
@@ -33,6 +33,11 @@ void SceneManager::checkLoadScene() {
 		activeScene->onLoadObjects();
 		isLoading = false;
 	}
+}
+
+String SceneManager::CurrentSceneName()
+{
+	return toLoadSceneName;
 }
 
 void SceneManager::loadScene(string name)

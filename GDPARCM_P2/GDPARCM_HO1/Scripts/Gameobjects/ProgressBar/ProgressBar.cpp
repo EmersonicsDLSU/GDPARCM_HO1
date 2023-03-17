@@ -3,6 +3,7 @@
 #include "BaseRunner/BaseRunner.h"
 #include "Components/Renderer/Renderer.h"
 #include "Gameobjects/Utilities/GameObjectManager.h"
+#include "Utilities/Manager/SceneManager.h"
 #include "Utilities/Manager/TextureManager.h"
 
 ProgressBar::ProgressBar(String name, String pbName, String fillerName, AGameObject* icon) : ::AGameObject(name), pbName(pbName), fillerName(fillerName)
@@ -63,5 +64,11 @@ void ProgressBar::Update(sf::Time deltaTime)
 
 		icon->SetPosition(fillerObj->GetLocalBounds().width + 100,BaseRunner::WINDOW_HEIGHT - 200);
 	}
-	
+	else
+	{
+		// load first scene
+		SceneManager::getInstance()->loadScene(SceneManager::MAINMENU_SCENE);
+	}
+
+	//std::cout << "Progress: " << currentProgress << std::endl;
 }

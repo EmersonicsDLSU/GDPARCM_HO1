@@ -17,7 +17,7 @@ public:
 	~BGMPlaylist();
 	void Perform() override;
 	void Initialize() override;
-	void ChangeSong();
+	void ChangeSong(int type);
 
 	void onButtonClick(UIButton* button) override;
 	void onButtonReleased(UIButton* button) override;
@@ -25,9 +25,14 @@ private:
 	void DisplaySongText();
 private:
 	UIText *songText, *nowPlayingText;
-	SFX* currentSoundPlaying = nullptr;
+	SFX *currentSoundPlaying = nullptr;
 	int currentIndex = 0;
 
 	float _animTicks = 0.0f, _animDuration = 5.0f;
 	bool _isAnimPlaying = false;
+
+	UIButton *forward = nullptr;
+	UIButton *backward = nullptr;
+	UIButton *pause = nullptr;
+	bool isPaused = false;
 };

@@ -11,7 +11,7 @@ class SceneManager
 public:
 	//scene names
 	static String LOADING_SCENE;
-	static String GAME_SCENE;
+	static String MAINMENU_SCENE;
 
 	static SceneManager* getInstance();
 	void registerScene(AScene* scene);
@@ -20,6 +20,7 @@ public:
 	bool isSceneLoaded(String name);
 	void checkLoadScene();
 	SceneTable storedScenes;
+	String CurrentSceneName();
 
 private:
 	SceneManager() {};

@@ -50,6 +50,12 @@ void UIButton::changeButtonToPressed()
 	this->sprite->setTexture(*this->pressedTexture);
 }
 
+void UIButton::changeTexture(sf::Texture* normalTexture, sf::Texture* pressedTexture)
+{
+	this->normalTexture = normalTexture;
+	this->pressedTexture = pressedTexture;
+}
+
 sf::FloatRect UIButton::getLocalBounds() {
 	return this->sprite->getLocalBounds();
 }

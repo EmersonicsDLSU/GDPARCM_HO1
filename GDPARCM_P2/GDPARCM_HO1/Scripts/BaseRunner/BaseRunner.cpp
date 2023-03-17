@@ -2,6 +2,7 @@
 
 #include "Gameobjects/Utilities/GameObjectManager.h"
 #include "Scene/LoadingScene/LoadingScene.h"
+#include "Scene/MainMenu/MainMenuScene.h"
 #include "Utilities/Manager/ApplicationManager.h"
 #include "Utilities/Manager/FontManager.h"
 #include "Utilities/Manager/SceneManager.h"
@@ -26,6 +27,7 @@ BaseRunner::BaseRunner() :
 
 	// register scenes
 	SceneManager::getInstance()->registerScene(new LoadingScene());
+	SceneManager::getInstance()->registerScene(new MainMenuScene());
 
 	// load first scene
 	SceneManager::getInstance()->loadScene(SceneManager::LOADING_SCENE);
