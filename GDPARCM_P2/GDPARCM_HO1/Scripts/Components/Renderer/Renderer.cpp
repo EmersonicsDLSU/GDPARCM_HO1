@@ -10,7 +10,8 @@ Renderer::Renderer(string name) : AComponent(name, AComponent::Renderer)
 
 Renderer::~Renderer()
 {
-	delete this->drawable;
+	if (drawable != nullptr)
+		delete this->drawable;
 }
 
 void Renderer::AssignTargetWindow(sf::RenderWindow* window)

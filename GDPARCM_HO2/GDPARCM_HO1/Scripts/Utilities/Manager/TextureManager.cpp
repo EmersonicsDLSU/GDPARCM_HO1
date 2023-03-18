@@ -159,6 +159,7 @@ void TextureManager::CountStreamingAssets()
 	std::cout << "[TextureManager] Number of streaming assets: " << this->streamingAssetCount << std::endl;
 }
 
+
 void TextureManager::InstantiateAsTexture(String path, String assetName, bool isStreaming)
 {
 	sf::Texture* texture = new sf::Texture();

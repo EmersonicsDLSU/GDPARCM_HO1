@@ -7,7 +7,14 @@
 #include "Gameobjects/Utilities/GameObjectManager.h"
 #include "Utilities/Manager/TextureManager.h"
 
-BGObject::BGObject(String name, String bgName) : ::AGameObject(name), bgName(bgName) {}
+BGObject::BGObject(String name, String bgName, String scenePlaylist) : ::AGameObject(name), bgName(bgName), scenePlaylist(scenePlaylist) {}
+
+BGObject::~BGObject()
+{
+	std::cout << "BGM DELETED!!!" << std::endl;
+	DetachComponent(playlist);
+	//delete playlist;
+}
 
 void BGObject::Initialize()
 {
@@ -27,7 +34,7 @@ void BGObject::Initialize()
 	//BGMovement* movement = new BGMovement("BG_Movement");
 	//AttachComponent(movement);
 
-	BGMPlaylist* playlist = new BGMPlaylist("BGM_Playlist");
+	playlist = new BGMPlaylist("BGM_Playlist", scenePlaylist);
 	AttachComponent(playlist);
 
 	Renderer* renderer = new Renderer("BG");

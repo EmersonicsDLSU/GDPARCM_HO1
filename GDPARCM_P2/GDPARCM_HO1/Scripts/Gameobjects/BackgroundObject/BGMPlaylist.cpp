@@ -11,7 +11,7 @@
 #include "Utilities/Manager/SFXManager.h"
 #include "Utilities/Manager/TextureManager.h"
 
-BGMPlaylist::BGMPlaylist(String name) : AComponent(name, Script)
+BGMPlaylist::BGMPlaylist(String name, String scenePlaylist) : AComponent(name, Script), scenePlaylist(scenePlaylist)
 {
 	// ui text
 	songText = new UIText("Song_Text");
@@ -26,10 +26,12 @@ BGMPlaylist::BGMPlaylist(String name) : AComponent(name, Script)
 		0);
 	nowPlayingText->SetSize(35);
 	nowPlayingText->SetText("Now Playing");
+	
 }
 
 BGMPlaylist::~BGMPlaylist()
 {
+	SFXManager::getInstance()->StopSound(currentSoundPlaying->key);
 }
 
 void BGMPlaylist::Perform()
@@ -72,21 +74,41 @@ void BGMPlaylist::Initialize()
 
 	forward = new UIButton("forward_btn", frwdNormal, frwdPressed);
 	GameObjectManager::GetInstance()->AddObject(forward);
-	forward->SetScale(0.0125f, 0.0125f);
-	forward->SetPosition( 200, 160);
-	forward->SetButtonListener(this);
 
 	backward = new UIButton("backward_btn", bckNormal, bckPressed);
 	GameObjectManager::GetInstance()->AddObject(backward);
-	backward->SetScale(0.0125f, 0.0125f);
-	backward->SetPosition(60, 160);
-	backward->SetButtonListener(this);
 
 	pause = new UIButton("pause_btn", pauseNormal, pausePressed);
 	GameObjectManager::GetInstance()->AddObject(pause);
-	pause->SetScale(0.1f, 0.1f);
-	pause->SetPosition(130, 160);
-	pause->SetButtonListener(this);
+
+	if (SceneManager::getInstance()->CurrentSceneName() == SceneManager::LOADING_SCENE)
+	{
+		forward->SetScale(0.0125f, 0.0125f);
+		forward->SetPosition(200, 160);
+		forward->SetButtonListener(this);
+
+		backward->SetScale(0.0125f, 0.0125f);
+		backward->SetPosition(60, 160);
+		backward->SetButtonListener(this);
+
+		pause->SetScale(0.1f, 0.1f);
+		pause->SetPosition(130, 160);
+		pause->SetButtonListener(this);
+	}
+	else if (SceneManager::getInstance()->CurrentSceneName() == SceneManager::MAINMENU_SCENE)
+	{
+		forward->SetScale(0.0125f, 0.0125f);
+		forward->SetPosition(BaseRunner::WINDOW_WIDTH / 2 + 70, BaseRunner::WINDOW_WIDTH / 2 + 50);
+		forward->SetButtonListener(this);
+
+		backward->SetScale(0.0125f, 0.0125f);
+		backward->SetPosition(BaseRunner::WINDOW_WIDTH / 2 - 70, BaseRunner::WINDOW_WIDTH / 2 + 50);
+		backward->SetButtonListener(this);
+
+		pause->SetScale(0.1f, 0.1f);
+		pause->SetPosition(BaseRunner::WINDOW_WIDTH / 2, BaseRunner::WINDOW_WIDTH / 2 + 50);
+		pause->SetButtonListener(this);
+	}
 
 }
 
@@ -99,6 +121,7 @@ void BGMPlaylist::ChangeSong(int type)
 		currentSoundPlaying = SFXManager::getInstance()->GetBGM_Playlist()[currentIndex];
 		songText->SetText(currentSoundPlaying->name);
 		_isAnimPlaying = true;
+		_animTicks = 0;
 	}
 	else if (type == 1)
 	{
@@ -106,6 +129,7 @@ void BGMPlaylist::ChangeSong(int type)
 		currentSoundPlaying = SFXManager::getInstance()->GetBGM_Playlist()[currentIndex];
 		songText->SetText(currentSoundPlaying->name);
 		_isAnimPlaying = true;
+		_animTicks = 0;
 	}
 
 	SFXManager::getInstance()->PlaySound(currentSoundPlaying->key);
@@ -149,7 +173,8 @@ void BGMPlaylist::onButtonReleased(UIButton* button)
 void BGMPlaylist::DisplaySongText()
 {
 	_animTicks += deltaTime.asSeconds();
-	if (SceneManager::getInstance()->CurrentSceneName() == SceneManager::LOADING_SCENE)
+	
+	if (scenePlaylist == SceneManager::LOADING_SCENE && SceneManager::getInstance()->CurrentSceneName() == SceneManager::LOADING_SCENE)
 	{
 		// If the animation is not yet complete
 		if (_animTicks < _animDuration)
@@ -171,21 +196,16 @@ void BGMPlaylist::DisplaySongText()
 			_isAnimPlaying = false;
 		}
 	}
-	else if (SceneManager::getInstance()->CurrentSceneName() == SceneManager::MAINMENU_SCENE)
+	else if (scenePlaylist == SceneManager::MAINMENU_SCENE && SceneManager::getInstance()->CurrentSceneName() == SceneManager::MAINMENU_SCENE)
 	{
 		// If the animation is not yet complete
 		if (_animTicks < _animDuration)
 		{
-			sf::Vector2f startPos = { BaseRunner::WINDOW_WIDTH / 2 + 150, BaseRunner::WINDOW_WIDTH - 100 };
-			sf::Vector2f endPos = { BaseRunner::WINDOW_WIDTH / 2 + 150, BaseRunner::WINDOW_WIDTH - 100 };
-			// Calculate the current position of the circle
-			float x = startPos.x + ((endPos.x - startPos.x) / _animDuration) * _animTicks;
-			float y = startPos.y + ((endPos.y - startPos.y) / _animDuration) * _animTicks;
-
 			// Update the position of the circle
-			songText->SetPosition(x, y);
+			songText->SetPosition(BaseRunner::WINDOW_WIDTH / 2, BaseRunner::WINDOW_WIDTH / 2);
+			songText->SetColor(sf::Color::White, sf::Color::Black);
 			// Update the position of the circle
-			nowPlayingText->SetPosition(x, y - 50);
+			nowPlayingText->SetPosition(songText->GetPosition().x, songText->GetPosition().y - 50);
 		}
 		else
 		{

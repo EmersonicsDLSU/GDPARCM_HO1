@@ -8,7 +8,7 @@ class AGameObject: sf::NonCopyable
 public:
 	typedef std::string String;
 	AGameObject(String name);
-	~AGameObject();
+	virtual ~AGameObject();
 	virtual void Initialize();
 	virtual void ProcessInput(sf::Event event);
 	virtual void Update(sf::Time deltaTime);

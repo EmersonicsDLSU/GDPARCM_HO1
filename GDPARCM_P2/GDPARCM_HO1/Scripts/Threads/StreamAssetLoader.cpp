@@ -27,8 +27,8 @@ void StreamAssetLoader::OnStartTask()
 	TextureManager::GetInstance()->InstantiateAsTexture(path, assetName, true);
 
 	//std::cout << "[TextureManager] Loaded streaming texture: " << assetName << std::endl;
-	if (execEvent != nullptr)
-		execEvent->onFinishedExecution();
+	//if (execEvent != nullptr)
+		//execEvent->onFinishedExecution();
 
 	// delete after being done
 	delete this;

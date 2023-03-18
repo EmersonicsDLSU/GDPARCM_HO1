@@ -13,7 +13,6 @@ UIButton::UIButton(string name, sf::Texture* normalTexture, sf::Texture* pressed
 
 UIButton::~UIButton()
 {
-	AGameObject::~AGameObject();
 }
 
 void UIButton::Initialize()

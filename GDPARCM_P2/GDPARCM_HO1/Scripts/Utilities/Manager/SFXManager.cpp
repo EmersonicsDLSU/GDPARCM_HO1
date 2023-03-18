@@ -68,7 +68,8 @@ void SFXManager::PauseSound(std::string key)
 
 void SFXManager::StopSound(std::string key)
 {
-	SFXManager::getInstance()->GetSound(key)->stop();
+	if (SFXManager::getInstance()->GetSound(key)->getStatus() == sf::SoundSource::Playing)
+		SFXManager::getInstance()->GetSound(key)->stop();
 }
 
 void SFXManager::SoundVolume(std::string key, int vol)

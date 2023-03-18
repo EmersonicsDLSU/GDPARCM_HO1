@@ -11,6 +11,7 @@ AComponent::AComponent(String name, ComponentType type) {
 AComponent::~AComponent() {
 	this->owner = nullptr;
 	this->type = NotSet;
+	std::cout << "Component Name: " << GetName() << " deleted\n";
 }
 
 // parent

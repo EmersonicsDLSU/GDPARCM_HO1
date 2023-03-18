@@ -9,6 +9,7 @@
 #include "Gameobjects/ProgressBar/ProgressBar.h"
 #include "Gameobjects/ToolTip/ToolTip.h"
 #include "Gameobjects/Utilities/GameObjectManager.h"
+#include "Utilities/Manager/SceneManager.h"
 #include "Utilities/Manager/SFXManager.h"
 #include "Utilities/Statistics/FPSCounter.h"
 
@@ -32,7 +33,7 @@ void LoadingScene::onLoadObjects()
 	std::cout << "Main menu scene initialized! \n";
 
 	//load objects
-	BGObject* bgObject = new BGObject("BGObject", "Blue_BG");
+	BGObject* bgObject = new BGObject("BGObject", "Blue_BG", SceneManager::LOADING_SCENE);
 	GameObjectManager::GetInstance()->AddObject(bgObject);
 
 	ToolTip* toolTip = new ToolTip("ToolTip",

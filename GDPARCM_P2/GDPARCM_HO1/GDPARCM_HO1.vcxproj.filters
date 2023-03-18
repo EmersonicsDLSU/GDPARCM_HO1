@@ -138,6 +138,9 @@
     <ClCompile Include="Scripts\Scene\MainMenu\MainMenuScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Gameobjects\HouseSlideShow\DesignSlideShow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Gameobjects\Utilities\AGameObject.h">
@@ -264,6 +267,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Scene\MainMenu\MainMenuScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Gameobjects\HouseSlideShow\DesignSlideShow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

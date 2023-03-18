@@ -22,9 +22,9 @@ public:
 	sf::Sprite* mainSprite;
 protected:
 	//used to be private, now we moved to protected since we're extending
-	sf::Drawable* drawable = NULL;
+	sf::Drawable* drawable = nullptr;
 private:
-	sf::RenderWindow* targetWindow = NULL;
+	sf::RenderWindow* targetWindow = nullptr;
 
 	sf::RenderStates renderStates = sf::RenderStates::Default;
 

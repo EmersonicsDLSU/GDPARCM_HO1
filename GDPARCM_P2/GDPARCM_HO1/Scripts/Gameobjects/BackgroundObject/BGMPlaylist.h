@@ -13,7 +13,7 @@ namespace sf
 class BGMPlaylist : public AComponent, public ButtonListener
 {
 public:
-	BGMPlaylist(String name);
+	BGMPlaylist(String name, String scenePlaylist);
 	~BGMPlaylist();
 	void Perform() override;
 	void Initialize() override;
@@ -35,4 +35,5 @@ private:
 	UIButton *backward = nullptr;
 	UIButton *pause = nullptr;
 	bool isPaused = false;
+	String scenePlaylist;
 };

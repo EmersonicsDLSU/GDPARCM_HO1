@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scripts\Gameobjects\HouseSlideShow\DesignSlideShow.cpp" />
     <ClCompile Include="Scripts\Scene\MainMenu\MainMenuScene.cpp" />
     <ClCompile Include="Scripts\Scene\MainMenu\MainMenuScreen.cpp" />
     <ClCompile Include="Scripts\Gameobjects\BackgroundObject\BGMPlaylist.cpp" />
@@ -191,6 +192,7 @@
     <ClCompile Include="Scripts\Gameobjects\ToolTip\ToolTip.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\Gameobjects\HouseSlideShow\DesignSlideShow.h" />
     <ClInclude Include="Scripts\Scene\MainMenu\MainMenuScene.h" />
     <ClInclude Include="Scripts\Scene\MainMenu\MainMenuScreen.h" />
     <ClInclude Include="Scripts\Gameobjects\BackgroundObject\BGMPlaylist.h" />
