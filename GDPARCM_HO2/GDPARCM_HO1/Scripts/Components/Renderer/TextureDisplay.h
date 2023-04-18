@@ -1,5 +1,6 @@
 #pragma once
 #include <mutex>
+#include <set>
 
 #include "Gameobjects/Utilities/AGameObject.h"
 #include "Threads/IExecutionEvent.h"
@@ -72,10 +73,12 @@ private:
 	Condition* condition_insert;
 	Condition* condition_search;
 	Mutex* guard;
+	// Semaphore
+	GlobalSemaphore* mutex;
+	GlobalSemaphore* deleterSem;
+	GlobalSemaphore* inserterSem;
 	// variables
 	ICON_struct* lastDeletedIcon = nullptr;
-	bool canDelete = false;
-	bool canInsert = false;
 	// measure variables
 	int IMG_WIDTH = 68; int IMG_HEIGHT = 68;
 	int columnGrid = 0; int rowGrid = 0;
@@ -83,7 +86,7 @@ private:
 	int searchersCount = 0;
 	const int MAX_COLUMN = 28;
 	const int MAX_ROW = 22;
-	const int TOTAL_ICONS = 480;
+	const int TOTAL_ICONS = 20;
 	const int ICONS_DISPLAYED_LIMIT = 10;
 	const int MAX_SEARCHER = 4;
 	const int MAX_INSERTER = 2;
