@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scripts\Gameobjects\Utilities\PNGObject.cpp" />
     <ClCompile Include="Scripts\Threads\GlobalSemaphore.cpp" />
     <ClCompile Include="Scripts\UI\Buttons\GenericInputController.cpp" />
     <ClCompile Include="Scripts\Utilities\Manager\ApplicationManager.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="Scripts\Threads\ThreadLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\Gameobjects\Utilities\PNGObject.h" />
     <ClInclude Include="Scripts\Threads\GlobalSemaphore.h" />
     <ClInclude Include="Scripts\UI\Buttons\GenericInputController.h" />
     <ClInclude Include="Scripts\UI\Buttons\ButtonListener.h" />

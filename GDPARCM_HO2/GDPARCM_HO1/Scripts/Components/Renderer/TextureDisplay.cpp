@@ -1,8 +1,11 @@
 #include "TextureDisplay.h"
 #include <iostream>
+#include <random>
+
 #include "BaseRunner/BaseRunner.h"
 #include "Gameobjects/IconObject/IconObject.h"
 #include "Gameobjects/Utilities/GameObjectManager.h"
+#include "Gameobjects/Utilities/PNGObject.h"
 #include "Threads/GlobalSemaphore.h"
 #include "Threads/ThreadLoader.h"
 #include "Threads/ThreadPool.h"
@@ -44,6 +47,24 @@ void TextureDisplay::Initialize()
 
 	lastDeletedIcon = new ICON_struct{0,0,"name", 0};
 
+	// arrows
+	for (int i = 0; i < 4; ++i)
+	{
+		PNGObject* arrow = new PNGObject("green_icon");
+		GameObjectManager::GetInstance()->AddObject(arrow);
+		green_arrows.emplace_back(arrow);
+	}
+	for (int i = 0; i < 2; ++i)
+	{
+		PNGObject* arrow = new PNGObject("orange_icon");
+		GameObjectManager::GetInstance()->AddObject(arrow);
+		orange_arrows.emplace_back(arrow);
+		arrow->SetPosition(-IMG_WIDTH, IMG_HEIGHT * 3);
+	}
+	red_arrow = new PNGObject("red_icon");
+	GameObjectManager::GetInstance()->AddObject(red_arrow);
+	red_arrow->SetPosition(-IMG_WIDTH, IMG_HEIGHT * 2);
+
 	TextureManager::GetInstance()->LoadStreamingAssets();
 	ConvertIconsToObjs();
 	DisplaySetIcons();
@@ -54,17 +75,17 @@ void TextureDisplay::Initialize()
 	// run threads for 'deleter'
 	for (int i = 0; i < MAX_DELETER; ++i)
 	{
-		CallDelete();
+		CallDelete(i);
 	}
 	// run threads for 'inserter'
 	for (int i = 0; i < MAX_INSERTER; ++i)
 	{
-		CallInsert();
+		CallInsert(i);
 	}
 	// run threads for 'searcher'
 	for (int i = 0; i < MAX_SEARCHER; ++i)
 	{
-		CallSearch();
+		CallSearch(i);
 	}
 }
 
@@ -97,51 +118,51 @@ void TextureDisplay::onFinishedExecution()
 
 }
 
-void TextureDisplay::OnSearch()
+void TextureDisplay::OnSearch(int ID)
 {
 	while (true)
 	{
-		TrySearch();
+		TrySearch(ID);
 	}
 }
 
-void TextureDisplay::OnInsert()
+void TextureDisplay::OnInsert(int ID)
 {
 	while (true)
 	{
-		TryInsert();
+		TryInsert(ID);
 	}
 }
 
 
-void TextureDisplay::OnDelete()
+void TextureDisplay::OnDelete(int ID)
 {
 	while (true)
 	{
 		std::cout << "Call Delete" << std::endl;
-		TryDelete();
+		TryDelete(ID);
 	}
 }
 
-void TextureDisplay::CallSearch()
+void TextureDisplay::CallSearch(int ID)
 {
-	ThreadLoader* iconSearcher = new ThreadLoader(SID_ENUM::SEARCH, this);
+	ThreadLoader* iconSearcher = new ThreadLoader(ID, SID_ENUM::SEARCH, this);
 	threadPool->ScheduleTask(iconSearcher);
 }
 
-void TextureDisplay::CallInsert()
+void TextureDisplay::CallInsert(int ID)
 {
-	ThreadLoader* iconInserter = new ThreadLoader(SID_ENUM::INSERT, this);
+	ThreadLoader* iconInserter = new ThreadLoader(ID, SID_ENUM::INSERT, this);
 	threadPool->ScheduleTask(iconInserter);
 }
 
-void TextureDisplay::CallDelete()
+void TextureDisplay::CallDelete(int ID)
 {
-	ThreadLoader* iconDeleter = new ThreadLoader(SID_ENUM::DELETE, this);
+	ThreadLoader* iconDeleter = new ThreadLoader(ID, SID_ENUM::DELETE, this);
 	threadPool->ScheduleTask(iconDeleter);
 }
 
-void TextureDisplay::TrySearch()
+void TextureDisplay::TrySearch(int ID)
 {
 	UniqueLock unique_lock(*this->guard);
 
@@ -149,13 +170,31 @@ void TextureDisplay::TrySearch()
 	{
 		condition_search->wait(unique_lock);
 	}
-	std::cout << "Search" << std::endl;
+	std::cout << "Search: " << ID << std::endl;
 	++searchersCount;
 	// critical-section
-	std::srand(std::time(nullptr));
-	// get a random icon from the 'displayedIcons' list
-	int random_num = std::rand() % displayedIcons.size();
-	searchList.emplace_back(random_num);
+	std::random_device rd;  // obtain a random seed from hardware
+	std::mt19937 eng(rd());  // seed the generator
+	uniform_int_distribution<int> distr(0, displayedIcons.size() - 1);  // define the range of possible values
+	int random_num;
+	bool num_chosen = false;
+	while (!num_chosen) {
+		random_num = distr(eng);  // generate a random number
+		if (std::find(searchList.begin(), searchList.end(), random_num) == searchList.end()) {
+			// if the random number is not already in the list, add it and exit the loop
+			searchList.emplace_back(random_num);
+			num_chosen = true;
+		}
+	}
+	// perform an arrow animation
+	for (int i = 0; i < random_num; ++i)
+	{
+		IETThread::sleep(500); // timer for showing the deleted icon(color indicator)
+		// set position in the world
+		float x = i * IMG_WIDTH;
+		float y = 2 * IMG_HEIGHT;
+		green_arrows[ID]->SetPosition(x, y);
+	}
 	// execute a 'delete' event
 	bool prev = canDelete;
 	canDelete = true;
@@ -167,7 +206,7 @@ void TextureDisplay::TrySearch()
 	unique_lock.unlock();
 }
 
-void TextureDisplay::TryInsert()
+void TextureDisplay::TryInsert(int ID)
 {
 	UniqueLock unique_lock(*this->guard);
 
@@ -203,7 +242,7 @@ void TextureDisplay::TryInsert()
 	unique_lock.unlock();
 }
 
-void TextureDisplay::TryDelete()
+void TextureDisplay::TryDelete(int ID)
 {
 	UniqueLock unique_lock(*this->guard);
 	while (!canDelete)
@@ -220,8 +259,10 @@ void TextureDisplay::TryDelete()
 	// erase the searched number to the 'search' list
 	searchList.erase(searchList.begin() + 0);
 	searchList.shrink_to_fit();
+	// show red arrow
+	red_arrow->SetPosition(IMG_WIDTH * lastDeletedIcon->index, IMG_HEIGHT * 1.5f);
 	// hide the iconObj
-	IETThread::sleep(500); // timer for showing the deleted icon(color indicator)
+	//IETThread::sleep(500); // timer for showing the deleted icon(color indicator)
 	iconObject->SetEnabled(false);
 	// notify one inserter
 	canInsert = true;
@@ -255,7 +296,6 @@ void TextureDisplay::DisplaySetIcons()
 		displayedIcons.emplace_back(iconObj);
 		iconObj->SetEnabled(true); // enable the obj
 		// set position in the world
-		int IMG_WIDTH = 68; int IMG_HEIGHT = 68;
 		float x = this->columnGrid * IMG_WIDTH;
 		float y = this->rowGrid * IMG_HEIGHT;
 		iconObj->SetPosition(x, y);

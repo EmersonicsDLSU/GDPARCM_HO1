@@ -4,6 +4,8 @@
 #include "Gameobjects/Utilities/AGameObject.h"
 #include "Threads/IExecutionEvent.h"
 
+class PNGObject;
+
 namespace std
 {
 	class mutex;
@@ -37,19 +39,23 @@ public:
 	void onFinishedExecution();
 
 	// execution events for S.I.D
-	void OnSearch();
-	void OnInsert();
-	void OnDelete();
+	void OnSearch(int ID);
+	void OnInsert(int ID);
+	void OnDelete(int ID);
 	// call functions for execute events
-	void CallSearch();
-	void CallInsert();
-	void CallDelete();
+	void CallSearch(int ID);
+	void CallInsert(int ID);
+	void CallDelete(int ID);
 	// Try functions
-	void TrySearch();
-	void TryInsert();
-	void TryDelete();
+	void TrySearch(int ID);
+	void TryInsert(int ID);
+	void TryDelete(int ID);
 
 private:
+	// arrow list
+	std::vector<PNGObject*> green_arrows;
+	std::vector<PNGObject*> orange_arrows;
+	PNGObject* red_arrow;
 	// Icon list
 	typedef std::vector<IconObject*> IconList;
 	IconList displayedIcons;
@@ -71,6 +77,7 @@ private:
 	bool canDelete = false;
 	bool canInsert = false;
 	// measure variables
+	int IMG_WIDTH = 68; int IMG_HEIGHT = 68;
 	int columnGrid = 0; int rowGrid = 0;
 	int numDisplayed = 0;
 	int searchersCount = 0;

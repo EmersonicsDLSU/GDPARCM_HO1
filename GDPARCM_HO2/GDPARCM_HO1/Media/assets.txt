@@ -1,1 +1,4 @@
 Media/Textures/Desert.png
+Media/Textures/green_icon.png
+Media/Textures/red_icon.png
+Media/Textures/orange_icon.png

@@ -4,8 +4,9 @@
 #include "Utilities/Manager/TextureManager.h"
 #include "Utilities/Utils/StringUtils.h"
 
-ThreadLoader::ThreadLoader(SID_ENUM enumType, IExecutionEvent* executionEvent)
+ThreadLoader::ThreadLoader(int ID, SID_ENUM enumType, IExecutionEvent* executionEvent)
 {
+	this->ID = ID;
 	this->enumType = enumType;
 	execEvent = executionEvent;
 }
@@ -20,13 +21,14 @@ void ThreadLoader::OnStartTask()
 	switch (enumType)
 	{
 	case SID_ENUM::SEARCH:
-		execEvent->OnSearch();
+		std::cout << "ID: " << ID << std::endl;
+		execEvent->OnSearch(ID);
 		break;
 	case SID_ENUM::INSERT:
-		execEvent->OnInsert();
+		execEvent->OnInsert(ID);
 		break;
 	case SID_ENUM::DELETE:
-		execEvent->OnDelete();
+		execEvent->OnDelete(ID);
 		break;
 	}
 

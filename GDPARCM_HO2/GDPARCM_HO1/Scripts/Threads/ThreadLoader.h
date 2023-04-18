@@ -16,11 +16,12 @@ class ThreadLoader : public IWorkerAction
 private:
 	typedef std::string String;
 public:
-	ThreadLoader(SID_ENUM enumType, IExecutionEvent* executionEvent);
+	ThreadLoader(int ID, SID_ENUM enumType, IExecutionEvent* executionEvent);
 	~ThreadLoader();
 private:
 	void OnStartTask() override;
 
+	int ID = 0;
 	SID_ENUM enumType;
 	IExecutionEvent* execEvent;
 };

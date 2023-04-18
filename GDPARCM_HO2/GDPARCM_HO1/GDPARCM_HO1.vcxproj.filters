@@ -123,6 +123,9 @@
     <ClCompile Include="Scripts\Threads\GlobalSemaphore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Gameobjects\Utilities\PNGObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Gameobjects\Utilities\AGameObject.h">
@@ -234,6 +237,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Threads\GlobalSemaphore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Gameobjects\Utilities\PNGObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
