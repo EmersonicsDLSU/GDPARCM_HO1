@@ -17,7 +17,8 @@ public:
 
 private:
 	typedef std::vector<IconObject*> IconList;
-	IconList iconList;
+	IconList unavailable;
+	IconList available;
 
 	enum StreamingType { BATCH_LOAD = 0, SINGLE_STREAM = 1 };
 	const float STREAMING_LOAD_DELAY = 50;
@@ -29,7 +30,11 @@ private:
 	int numDisplayed = 0;
 	const int MAX_COLUMN = 28;
 	const int MAX_ROW = 22;
+	const int TOTAL_ICONS = 480;
+	const int ICONS_DISPLAYED_LIMIT = 100;
 
+	void ConvertIconsToObjs();
+	void DisplaySetIcons();
 	void spawnObject();
 };
 

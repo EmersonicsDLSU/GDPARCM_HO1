@@ -37,8 +37,6 @@ class GameObjectManager
 
 		HashTable gameObjectMap;
 		List gameObjectList;
-
-		typedef std::mutex Mutex;
-		Mutex guard;
+		
 };
 

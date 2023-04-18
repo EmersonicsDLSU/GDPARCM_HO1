@@ -57,14 +57,11 @@ void GameObjectManager::Draw(sf::RenderWindow* window) {
 
 void GameObjectManager::AddObject(AGameObject* gameObject)
 {
-	guard.lock();
-
 	//also Initialize the oject
 	this->gameObjectMap[gameObject->GetName()] = gameObject;
 	this->gameObjectList.push_back(gameObject);
 	this->gameObjectMap[gameObject->GetName()]->Initialize();
-
-	guard.unlock();
+	
 }
 
 //also frees up allocation of the object.
