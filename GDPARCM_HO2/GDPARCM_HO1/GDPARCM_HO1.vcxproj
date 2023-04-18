@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scripts\Threads\GlobalSemaphore.cpp" />
     <ClCompile Include="Scripts\UI\Buttons\GenericInputController.cpp" />
     <ClCompile Include="Scripts\Utilities\Manager\ApplicationManager.cpp" />
     <ClCompile Include="Scripts\Scene\LoadingScene\LoadingScene.cpp" />
@@ -182,8 +183,10 @@
     <ClCompile Include="Scripts\Utilities\Manager\SFXManager.cpp" />
     <ClCompile Include="Scripts\UI\Buttons\UIButton.cpp" />
     <ClCompile Include="Scripts\UI\Buttons\UIButtonInputController.cpp" />
+    <ClCompile Include="Scripts\Threads\ThreadLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\Threads\GlobalSemaphore.h" />
     <ClInclude Include="Scripts\UI\Buttons\GenericInputController.h" />
     <ClInclude Include="Scripts\UI\Buttons\ButtonListener.h" />
     <ClInclude Include="Scripts\Utilities\Manager\ApplicationManager.h" />
@@ -219,6 +222,7 @@
     <ClInclude Include="Scripts\Utilities\Manager\SFXManager.h" />
     <ClInclude Include="Scripts\UI\Buttons\UIButton.h" />
     <ClInclude Include="Scripts\UI\Buttons\UIButtonInputController.h" />
+    <ClInclude Include="Scripts\Threads\ThreadLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
