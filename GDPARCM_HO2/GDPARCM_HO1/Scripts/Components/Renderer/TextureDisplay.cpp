@@ -20,10 +20,6 @@ TextureDisplay::TextureDisplay(): AGameObject("TextureDisplay")
 TextureDisplay::~TextureDisplay()
 {
 	outfile.close();
-	delete guard;
-	delete condition_delete;
-	delete condition_insert;
-	delete condition_search;
 
 	for (auto icon : displayedIcons) {
 		delete icon;
@@ -35,45 +31,40 @@ TextureDisplay::~TextureDisplay()
 	iconBank.clear();
 
 	delete threadPool;
-
-	delete lastDeletedIcon;
 }
 
 void TextureDisplay::Initialize()
 {
 	outfile = std::ofstream("exampleOutput.txt");
-
-	guard = new Mutex();
-	condition_delete = new Condition();
-	condition_insert = new Condition();
-	condition_search = new Condition();
-
+	
 	mutex = new GlobalSemaphore(1, 1);
 	isClose = new GlobalSemaphore(1, 1);
 	searcherSem = new GlobalSemaphore(MAX_SEARCHER, MAX_SEARCHER);
 	deleterSem = new GlobalSemaphore(0, MAX_DELETER);
 	inserterSem = new GlobalSemaphore(0, MAX_INSERTER);
 
-	lastDeletedIcon = nullptr;
-
 	// arrows
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < MAX_SEARCHER; ++i)
 	{
 		PNGObject* arrow = new PNGObject("green_icon");
 		GameObjectManager::GetInstance()->AddObject(arrow);
 		green_arrows.emplace_back(arrow);
 		arrow->SetPosition(-IMG_WIDTH, IMG_HEIGHT * 3);
 	}
-	for (int i = 0; i < 2; ++i)
+	for (int i = 0; i < MAX_INSERTER; ++i)
 	{
 		PNGObject* arrow = new PNGObject("orange_icon");
 		GameObjectManager::GetInstance()->AddObject(arrow);
 		orange_arrows.emplace_back(arrow);
 		arrow->SetPosition(-IMG_WIDTH, IMG_HEIGHT * 3);
 	}
-	red_arrow = new PNGObject("red_icon");
-	GameObjectManager::GetInstance()->AddObject(red_arrow);
-	red_arrow->SetPosition(-IMG_WIDTH, IMG_HEIGHT * 2);
+	for (int i = 0; i < MAX_DELETER; ++i)
+	{
+		PNGObject* arrow = new PNGObject("red_icon");
+		GameObjectManager::GetInstance()->AddObject(arrow);
+		red_arrows.emplace_back(arrow);
+		arrow->SetPosition(-IMG_WIDTH, IMG_HEIGHT * 3);
+	}
 
 	TextureManager::GetInstance()->LoadStreamingAssets();
 	ConvertIconsToObjs();
@@ -132,7 +123,62 @@ void TextureDisplay::OnSearch(int ID)
 {
 	while (true)
 	{
-		TrySearch(ID);
+		searcherSem->acquire();
+		mutex->acquire();
+
+		// random select an icon from the 'iconBank'
+		std::srand(std::time(nullptr));
+		int random_num = std::rand() % displayedSearchList.size();
+
+		IconObject* icon_object = displayedSearchList[random_num];
+		searchList.emplace_back(icon_object);
+
+		auto it = std::remove(displayedSearchList.begin(),
+			displayedSearchList.end(), icon_object);
+		displayedSearchList.erase(it, displayedSearchList.end());
+		displayedSearchList.shrink_to_fit();
+
+		green_arrows[ID]->SetPosition(-IMG_WIDTH, IMG_HEIGHT * 1.5f);
+		// perform an arrow animation
+		while (green_arrows[ID]->GetPosition().x != icon_object->GetPosition().x)
+		{
+			float x = green_arrows[ID]->GetPosition().x;
+			green_arrows[ID]->SetPosition(x + IMG_WIDTH, IMG_HEIGHT * 1.5f);
+			IETThread::sleep(10); // timer for showing the deleted icon(color indicator)
+		}
+
+		mutex->release();
+		isClose->acquire();
+		deleterSem->release();
+	}
+}
+
+void TextureDisplay::OnDelete(int ID)
+{
+	while (true)
+	{
+		deleterSem->acquire();
+		mutex->acquire();
+
+		// show red arrow
+		red_arrows[ID]->SetPosition(searchList[0]->GetPosition().x, IMG_HEIGHT * 3.0f);
+		// hide/delete the iconObj
+		searchList[0]->SetEnabled(false);
+		if (outfile.is_open()) {  // check if the file was successfully opened
+			outfile << "Delete(Name): " << searchList[0]->GetName() <<
+				" Index: " << (int)searchList[0]->GetPosition().x / 68 << std::endl;
+		}
+		// add the search list to the insertedTaskList
+		insertedTaskList.emplace_back(searchList[0]);
+		// delete the recently search icon
+		auto it = std::remove(searchList.begin(),
+			searchList.end(), searchList[0]);
+		searchList.erase(it, searchList.end());
+		searchList.shrink_to_fit();
+		IETThread::sleep(10); // delay for showing the deleted icon
+		mutex->release();
+		isClose->release();
+		inserterSem->release();
 	}
 }
 
@@ -140,18 +186,56 @@ void TextureDisplay::OnInsert(int ID)
 {
 	while (true)
 	{
-		TryInsert(ID);
+		inserterSem->acquire();
+		mutex->acquire();
+		// random select an icon from the 'iconBank'
+		std::srand(std::time(nullptr));
+		int random_num = std::rand() % iconBank.size();
+
+		// transfer the 'new' icon to the 'displayedIcons'
+		IconObject* newIcon = iconBank[random_num];
+		displayedIcons.emplace_back(newIcon);
+		auto it = std::remove(iconBank.begin(),
+			iconBank.end(), newIcon);
+		iconBank.erase(it, iconBank.end());
+		iconBank.shrink_to_fit();
+		// add the new icon to displayed search list
+		displayedSearchList.emplace_back(newIcon);
+		// transfer the 'lastDeleted' icon to the 'iconBank'
+		iconBank.emplace_back(insertedTaskList[0]);
+		auto it2 = std::remove(displayedIcons.begin(),
+			displayedIcons.end(), insertedTaskList[0]);
+		displayedIcons.erase(it2, displayedIcons.end());
+		displayedIcons.shrink_to_fit();
+		// show orange arrow
+		for (int i = 0; i < MAX; ++i)
+		{
+			if (i == ID)
+			{
+				orange_arrows[ID]->SetPosition(insertedTaskList[0]->GetPosition().x,
+					IMG_HEIGHT * (3.0f + 1.5f * (ID + 1)));
+				break;
+			}
+		}
+		// enable and set the position based on the recently deleted icon
+		newIcon->SetEnabled(true);
+		newIcon->SetPosition(insertedTaskList[0]->GetPosition().x, insertedTaskList[0]->GetPosition().y);
+		// delete the insert task
+		auto it3 = std::remove(insertedTaskList.begin(),
+			insertedTaskList.end(), insertedTaskList[0]);
+		insertedTaskList.erase(it3, insertedTaskList.end());
+		insertedTaskList.shrink_to_fit();
+		if (outfile.is_open()) {  // check if the file was successfully opened
+			outfile << "Insert(Name): " << newIcon->GetName() <<
+				" Index: " << (int)newIcon->GetPosition().x / 68 << std::endl;
+		}
+		IETThread::sleep(500); // delay for showing the inserted icon
+
+		mutex->release();
+		searcherSem->release();
 	}
 }
 
-
-void TextureDisplay::OnDelete(int ID)
-{
-	while (true)//
-	{
-		TryDelete(ID);
-	}
-}
 
 void TextureDisplay::CallSearch(int ID)
 {
@@ -169,115 +253,6 @@ void TextureDisplay::CallDelete(int ID)
 {
 	ThreadLoader* iconDeleter = new ThreadLoader(ID, SID_ENUM::DELETE, this);
 	threadPool->ScheduleTask(iconDeleter);
-}
-
-void TextureDisplay::TrySearch(int ID)
-{
-	searcherSem->acquire();
-	mutex->acquire();
-
-	// random select an icon from the 'iconBank'
-	std::srand(std::time(nullptr));
-	int random_num = std::rand() % displayedSearchList.size();
-
-	IconObject* icon_object = displayedSearchList[random_num];
-	searchList.emplace_back(icon_object);
-
-	auto it = std::remove(displayedSearchList.begin(), displayedSearchList.end(), icon_object);
-	displayedSearchList.erase(it, displayedSearchList.end());
-	displayedSearchList.shrink_to_fit();
-
-	green_arrows[ID]->SetPosition(-IMG_WIDTH, IMG_HEIGHT * 1.5f);
-	// perform an arrow animation
-	while (green_arrows[ID]->GetPosition().x != icon_object->GetPosition().x)
-	{
-		float x = green_arrows[ID]->GetPosition().x;
-		green_arrows[ID]->SetPosition(x + IMG_WIDTH, IMG_HEIGHT * 1.5f);
-		IETThread::sleep(50); // timer for showing the deleted icon(color indicator)
-	}
-
-	mutex->release();
-	isClose->acquire();
-	//std::cout << "Random Number(Search): " << random_num << std::endl;
-	//std::cout << "Search: " << searchList[0]->GetName() << " " << searchList[0]->GetPosition().x << ":" << searchList[0]->GetPosition().y << std::endl;
-
-	// Use a lambda to remove icon_object from searchList
-	auto remove_from_searchList = [&, icon_object]() {
-		auto it = std::remove(searchList.begin(), searchList.end(), icon_object);
-		searchList.erase(it, searchList.end());
-		searchList.shrink_to_fit();
-	};
-
-	deleterSem->release();
-	remove_from_searchList();
-}
-void TextureDisplay::TryInsert(int ID)
-{
-	inserterSem->acquire();
-	mutex->acquire();
-	// random select an icon from the 'iconBank'
-	std::srand(std::time(nullptr));
-	int random_num = std::rand() % iconBank.size();
-
-	// transfer the 'new' icon to the 'displayedIcons'
-	IconObject* newIcon = iconBank[random_num];
-	displayedIcons.emplace_back(newIcon);
-	auto it = std::remove(iconBank.begin(), iconBank.end(), newIcon);
-	iconBank.erase(it, iconBank.end());
-	iconBank.shrink_to_fit();
-	// add the new icon to displayed search list
-	displayedSearchList.emplace_back(newIcon);
-	// transfer the 'lastDeleted' icon to the 'iconBank'
-	iconBank.emplace_back(lastDeletedIcon);
-	auto it2 = std::remove(displayedIcons.begin(), displayedIcons.end(), lastDeletedIcon);
-	displayedIcons.erase(it2, displayedIcons.end());
-	displayedIcons.shrink_to_fit();
-	// show orange arrow
-	for (int i = 0; i < MAX; ++i)
-	{
-		if (i == ID)
-		{
-			orange_arrows[ID]->SetPosition(lastDeletedIcon->GetPosition().x, IMG_HEIGHT * (3.0f + 1.5f * (ID + 1) ));
-			break;
-		}
-	}
-	// enable and set the position based on the recently deleted icon
-	newIcon->SetEnabled(true);
-	newIcon->SetPosition(lastDeletedIcon->GetPosition().x, lastDeletedIcon->GetPosition().y);
-	if (outfile.is_open()) {  // check if the file was successfully opened
-		outfile << "Insert(Name): " << newIcon->GetName() << " Index: " << (int)newIcon->GetPosition().x / 68 << std::endl;
-	}
-	//std::cout << "Insert: " << newIcon->GetName() << " " << newIcon->GetPosition().x << ":" << newIcon->GetPosition().y << std::endl;
-
-	IETThread::sleep(500); // timer for showing the deleted icon(color indicator)
-	mutex->release();
-	isClose->release();
-	searcherSem->release();
-}
-
-void TextureDisplay::TryDelete(int ID)
-{
-	deleterSem->acquire();
-	mutex->acquire();
-	
-	// get the selected icon to be deleted
-	lastDeletedIcon = searchList[0];
-	// show red arrow
-	red_arrow->SetPosition(lastDeletedIcon->GetPosition().x, IMG_HEIGHT * 3.0f);
-	// hide the iconObj
-	lastDeletedIcon->SetEnabled(false);
-	// delete the recently search icon
-	auto it = std::remove(searchList.begin(), searchList.end(), lastDeletedIcon);
-	searchList.erase(it, searchList.end());
-	searchList.shrink_to_fit();
-	if (outfile.is_open()) {  // check if the file was successfully opened
-		outfile << "Delete(Name): " << lastDeletedIcon->GetName() << " Index: " << (int)lastDeletedIcon->GetPosition().x / 68 << std::endl;
-	}
-	//std::cout << "Delete: " << lastDeletedIcon->GetName() << " " << lastDeletedIcon->GetPosition().x << ":" << lastDeletedIcon->GetPosition().y << std::endl;
-
-	IETThread::sleep(500); // timer for showing the deleted icon(color indicator)
-	mutex->release();
-	inserterSem->release();
 }
 
 void TextureDisplay::ConvertIconsToObjs()

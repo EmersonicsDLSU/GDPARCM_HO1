@@ -48,46 +48,32 @@ public:
 	void CallSearch(int ID);
 	void CallInsert(int ID);
 	void CallDelete(int ID);
-	// Try functions
-	void TrySearch(int ID);
-	void TryInsert(int ID);
-	void TryDelete(int ID);
 
 private:
 	// arrow list
 	std::vector<PNGObject*> green_arrows;
 	std::vector<PNGObject*> orange_arrows;
-	PNGObject* red_arrow;
+	std::vector<PNGObject*> red_arrows;
 	// Icon list
 	typedef std::vector<IconObject*> IconList;
 	IconList displayedIcons;
-	IconList iconBank; // iconBank for 
+	IconList iconBank; 
 	// search list
 	IconList displayedSearchList;
 	IconList searchList;
+	IconList insertedTaskList;
 	// Thread utilities
 	ThreadPool* threadPool;
-	// Monitor
-	typedef  std::condition_variable Condition;
-	typedef  std::mutex Mutex;
-	typedef  unique_lock<std::mutex> UniqueLock;
-	Condition* condition_delete;
-	Condition* condition_insert;
-	Condition* condition_search;
-	Mutex* guard;
 	// Semaphore
 	GlobalSemaphore* mutex;
 	GlobalSemaphore* isClose;
 	GlobalSemaphore* searcherSem;
 	GlobalSemaphore* deleterSem;
 	GlobalSemaphore* inserterSem;
-	// variables
-	IconObject* lastDeletedIcon = nullptr;
 	// measure variables
 	int IMG_WIDTH = 68; int IMG_HEIGHT = 68;
 	int columnGrid = 0; int rowGrid = 0;
 	int numDisplayed = 0;
-	int searchersCount = 0;
 	const int MAX_COLUMN = 28;
 	const int MAX_ROW = 22;
 	const int TOTAL_ICONS = 20;

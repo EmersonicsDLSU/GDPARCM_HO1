@@ -25,7 +25,7 @@ BaseRunner::BaseRunner() :
 
 	//load objects
 	BGObject* bgObject = new BGObject("BGObject", "Desert");
-	GameObjectManager::GetInstance()->AddObject(bgObject);
+	//GameObjectManager::GetInstance()->AddObject(bgObject);
 
 	TextureDisplay* display = new TextureDisplay();
 	GameObjectManager::GetInstance()->AddObject(display);
