@@ -144,7 +144,7 @@ void TextureDisplay::OnSearch(int ID)
 		{
 			float x = green_arrows[ID]->GetPosition().x;
 			green_arrows[ID]->SetPosition(x + IMG_WIDTH, IMG_HEIGHT * 1.5f);
-			IETThread::sleep(10); // timer for showing the deleted icon(color indicator)
+			IETThread::sleep(50); // timer for showing the deleted icon(color indicator)
 		}
 
 		mutex->release();
@@ -175,7 +175,7 @@ void TextureDisplay::OnDelete(int ID)
 			searchList.end(), searchList[0]);
 		searchList.erase(it, searchList.end());
 		searchList.shrink_to_fit();
-		IETThread::sleep(10); // delay for showing the deleted icon
+		IETThread::sleep(100); // delay for showing the deleted icon
 		mutex->release();
 		isClose->release();
 		inserterSem->release();
