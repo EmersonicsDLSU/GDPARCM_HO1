@@ -1,4 +1,5 @@
 #pragma once
+#include <fstream>
 #include <mutex>
 #include <set>
 
@@ -62,7 +63,8 @@ private:
 	IconList displayedIcons;
 	IconList iconBank; // iconBank for 
 	// search list
-	std::vector<int> searchList;
+	IconList displayedSearchList;
+	IconList searchList;
 	// Thread utilities
 	ThreadPool* threadPool;
 	// Monitor
@@ -75,10 +77,12 @@ private:
 	Mutex* guard;
 	// Semaphore
 	GlobalSemaphore* mutex;
+	GlobalSemaphore* isClose;
+	GlobalSemaphore* searcherSem;
 	GlobalSemaphore* deleterSem;
 	GlobalSemaphore* inserterSem;
 	// variables
-	ICON_struct* lastDeletedIcon = nullptr;
+	IconObject* lastDeletedIcon = nullptr;
 	// measure variables
 	int IMG_WIDTH = 68; int IMG_HEIGHT = 68;
 	int columnGrid = 0; int rowGrid = 0;
@@ -94,7 +98,11 @@ private:
 	// functions
 	void ConvertIconsToObjs();
 	void DisplaySetIcons();
-
+	IconObject* GetObjectFromList(const IconList& list, const IconObject* obj, int& index);
+	bool IsObjectInIconList(const IconList& list, const IconObject* obj);
+	// text file
+	std::ofstream outfile;
+	//
 	enum StreamingType { BATCH_LOAD = 0, SINGLE_STREAM = 1 };
 	const float STREAMING_LOAD_DELAY = 50;
 	const StreamingType streamingType = SINGLE_STREAM;
